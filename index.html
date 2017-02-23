@@ -59,8 +59,10 @@ EvPNG.fix('img,.content,.svc-payment,.svc-gathering,.svc-weg,.svc-tx,.svc-credit
         <div class="so_so">
           <div class="logo"><a href="#" title="茜茜爸爸"><img src="images/logo.jpg" / alt="茜茜爸爸"></a></div>
           <div class="mk_so">
-            <input type="text" class="input"  name=""/>
-            <input type="image" src="images/btn.jpg" class="btn" />
+            <form id =form name="form" method="get" action="search_course.php">
+              <input type="text" class="input"  id="search_content" name="search_content"/>
+              <input type="image" src="images/btn.jpg" class="btn" onclick="this.form.submit()"/>
+            </form>
           </div>
         </div>
         
@@ -71,7 +73,6 @@ EvPNG.fix('img,.content,.svc-payment,.svc-gathering,.svc-weg,.svc-tx,.svc-credit
           <ul>
             <li><a href="index.html" class="on">首页</a></li>
             <li><a href="user/user.php">个人中心</a></li>
-			<li><a href="#">翻转课堂</a></li>
             <li><a href="course.php">课程中心</a></li>
           </ul>
         </div>
