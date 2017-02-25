@@ -102,9 +102,9 @@ class database{
 		return $value;
 	}
 
-	private function insert_data_to_user($name,$password,$email,$phone,$location){
-		$this->connect->exec("INSERT INTO user(name,password,email,phone,location) VALUES".
-			"('$name','$password','$email','$phone','$location')");
+	private function insert_data_to_user($name,$password,$email,$phone,$location,$introduction){
+		$this->connect->exec("INSERT INTO user(name,password,email,phone,location,introduction) VALUES".
+			"('$name','$password','$email','$phone','$location','$introduction')");
 	}
 	private function insert_data_to_course($name,$time,$directory,$play_count,$image,$amount,$content){
 		$this->connect->exec("INSERT INTO course(name,time,directory,play_count,image,amount,content) VALUES".

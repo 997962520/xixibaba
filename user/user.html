@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>安徽慕界网络科技有限公司</title>
+<title>茜茜爸爸儿童家庭学堂课程中心</title>
 <link href="../css/whir_common.css" rel="stylesheet" type="text/css" />
 <link href="../css/whir_grzx.css" rel="stylesheet" type="text/css" />
 <!--[if IE 6]>
@@ -11,27 +11,48 @@
 EvPNG.fix('img,.content,.svc-payment,.svc-gathering,.svc-weg,.svc-tx,.svc-credit,.svc-aa,.svc-donate,.svc-mobile,.svc-escore,.svc-rent,.svc-cashgift,.con,.aoff,'); </script>
 <![endif]-->
 </head>
-<body class="body1">
+<body>
 <!--头部-->
 <div id="header">
   <div class="top">
     <div class="topmain">
       <div class="searchbox">
         <div class="so_so">
-          <div class="logo"><a href="#" title="目课网"><img src="../images/logo.jpg" / alt="目课网"></a></div>
+          <div class="logo"><a href="#" title="茜茜爸爸"><img src="../images/logo.jpg" / alt="茜茜爸爸"></a></div>
           <div class="mk_so">
-            <input type="text" class="input"  name=""/>
-            <input type="image" src="../images/btn.jpg" class="btn" />
+            <form id =form name="form" method="get" action="../search_course.php">
+              <input type="text" class="input"  id="search_content" name="search_content"/>
+              <input type="image" src="../images/btn.jpg" class="btn" onclick="this.form.submit()"/>
+            </form>
           </div>
         </div>
         <div class="topmenu">
           <div class="xsyd"><a href="#" target="_blank">新手引导</a></div>
           <div class="hylist">
             <ul>
-              <li class="li1"><a href="个人中心-信息完善.html">会员</a></li>
-              <li class="li2"><a href="javascript:void(0);" onclick="showA();">注册</a>/<a href="javascript:void(0);" onclick="showB();">登陆</a></li>
-              <li class="li3"><a href="#">APP下载</a></li>
-              <li class="li4"><a href="#">收藏我们</a></li>
+              <li class="li1"><a href="user.html">会员</a></li>
+              <!--添加进收藏夹功能-->
+              <script>
+                function addToFavorite(sTitle,sURL)
+                {
+                  try
+                  {
+                    window.external.addFavorite(sURL, sTitle);
+                  }
+                  catch (e)
+                  {
+                    try
+                    {
+                      window.sidebar.addPanel(sTitle, sURL, "");
+                    }
+                    catch (e)
+                    {
+                      alert("您的浏览器不支持自动加入收藏夹，请使用Ctrl+D进行手动添加");
+                    }
+                  }
+                }
+              </script>
+              <li class="li4"><a href="javascript:void(0)" onclick="addToFavorite(document.title,window.location)">收藏我们</a></li>
             </ul>
           </div>
 		  				  <!--注册登录隐藏--->
@@ -67,14 +88,8 @@ EvPNG.fix('img,.content,.svc-payment,.svc-gathering,.svc-weg,.svc-tx,.svc-credit
         <div class="nav">
           <ul>
             <li><a href="../index.html" class="on">首页</a></li>
-            <li><a href="中学时代.html">中学时代</a></li>
-			<li><a href="#">翻转课堂</a></li>
-            <li><a href="大学主页.html">大学时代</a></li>
-            <li><a href="大学主页.html">高校慕课</a></li>
-            <li><a href="大学主页.html">职业培训</a></li>
-            <li><a href="企业主页.htmll">企业培训</a></li>
-            <li><a href="#">综合视频</a></li>
-            <li><a href="课件超市.html">课件超市</a></li>
+            <li><a href="user.html">个人中心</a></li>
+            <li><a href="../course.php">课程中心</a></li>
           </ul>
         </div>
         <div class="question">
@@ -90,309 +105,131 @@ EvPNG.fix('img,.content,.svc-payment,.svc-gathering,.svc-weg,.svc-tx,.svc-credit
 </div>
 <div class="clear"></div>
 <!--container-->
-<div id="container">
-  <div class="banner"><img src="../images/grzx/grbg.jpg" /></div>
-  <!--个人信息-->
-  <div class="grinfo">
-    <div class="grphoto"><a href="#"><img src="../images/grzx/grtx.jpg" /></a></div>
-    <div class="grxx">
-      <div class="name"> <span class="grname">王老师</span><span class="dengji"><img src="../images/grzx/vip.jpg" /> 等级1</span><span class="paiming"> 今日排名：2000名 <img src="../images/grzx/up.jpg" /> </span> </div>
-      <div class="grjj">王老师数学系专业，任教20年……</div>
-      <div class="visit"> <span class="jifen">访问量：20万  |  积分：200分</span> <span class="guanzhu"><a href="#">+ 关注</a></span> <span class="tuijian"><a href="#">收藏</a> | <a href="#">推荐</a></span> </div>
+<div class="subbox">
+  <!--左侧部分-->
+  <div class="left180">
+    <div class="grtx">
+      <div class="grimg"><img src="../images/grzx/grtx.jpg" /></div>
+      <div class="grname"><a href="#">王老师</a></div>
     </div>
+    <ul class="menu1">
+      <li class="on"><a onclick="return click_a('divOne_1')" style="cursor:pointer;"><em id="div_one">个人中心</em></a></li>
+      <div class="menu1_sub" id="divOne_1" style="display:none;">
+        <p><a href="../个人中心-信息完善.html" >信息完善</a></p>
+        <p><a href="../个人中心-信息完善.html" >修改资料</a></p>
+        <p><a href="../个人中心-账户安全.html" >账户安全</a></p>
+      </div>
+      <div class="menubox">
+        <p><a href="../个人中心-信息完善.html" >个人资料</a></p>
+        <p><a href="../个人中心-账户安全.html" >账户管理</a></p>
+        <p><a href="../个人中心-我的关注.html" >我的关注</a></p>
+      </div>
+    </ul>
+    <script language="javascript" type="text/javascript">
+        function click_a(divDisplay)
+        {
+            if(document.getElementById(divDisplay).style.display != "block")
+            {
+                document.getElementById(divDisplay).style.display = "block";
+            }
+            else
+            {
+                document.getElementById(divDisplay).style.display = "none";
+            }
+        }
+    </script>
+    <ul class="menu2">
+      <li><a href="../个人中心-我加入的班级.html"><em>班级管理</em></a></li>
+      <div class="menubox">
+        <p><a href="../个人中心-我加入的班级.html" >我创建的班级</a></p>
+        <p><a href="../个人中心-我加入的班级.html" >我加入的班级</a></p>
+      </div>
+    </ul>
+    <ul class="menu3">
+      <li><a href="#"><em>视频管理</em></a></li>
+      <div class="menubox">
+        <p><a href="../个人中心-上传视频.html" >上传视频</a></p>
+        <p><a href="#" >我的收藏</a></p>
+        <p><a href="../个人中心-观看记录.html" >观看记录</a></p>
+      </div>
+    </ul>
+    <ul class="menu4">
+      <li><a href="#"><em>我的互动</em></a></li>
+      <div class="menubox">
+        <p><a href="../个人中心-我的笔记.html" >我的笔记</a></p>
+        <p><a href="../个人中心-心情日志.html" >心情日志</a></p>
+        <p><a href="../个人中心-我的回答.html" >我的提问</a></p>
+        <p><a href="../个人中心-我的回答.html" >我的回答</a></p>
+        <p><a href="../个人中心-留言.html" >留言板</a></p>
+      </div>
+    </ul>
+    <ul class="menu5">
+      <li><a href="../个人中心-我的视频.html"><em>我的课程</em></a></li>
+      <div class="menubox">
+        <p><a href="../个人中心-我的视频.html" >学习中视频</a></p>
+        <p><a href="../个人中心-我的视频.html" >猜你喜欢</a></p>
+        <p><a href="../个人中心-我的慕课.html" >我的慕课</a></p>
+      </div>
+    </ul>
   </div>
-  <div class="mainbox">
-    <div class="title">
-      <h1>最新上传</h1>
-      <div class="nysearch">
-        <input type="text" value="页面搜索" onFocus="this.value='';" onBlur="if(this.value==''){this.value='页面搜索';}" name=""  class="input3"/>
-        <input type="image" src="../images/grzx/button.jpg" class="btn2" />
-      </div>
-      <div class="wenti"><a href="#"><img src="../images/grzx/wtb.jpg" /></a></div>
+  <!--右侧部分-->
+  <div class="right840">
+    <div class="title6">
+      <h1><a href="#" class="on">信息完善</a></h1>
+      <h1><a href="#">修改图像</a></h1>
+      <h1><a href="#">账户安全</a></h1>
     </div>
-    <div class="clear"></div>
-    <div class="left840">
-      <div class="zxsc">
-        <ul>
-          <li class="myvideo">
-            <div class="myvideoimg"><img src="../images/my.jpg" />
-              <h3><a href="#">Nancy带你【玩转法兰西】...</a></h3>
-              <span class="play1"><a href="#" title="播放">播放</a></span><span class="time">02:10</span></div>
-            <div class="title1">
-              <div class="jiage"><a href="#">￥15</a></div>
-              <div class="playtime"><a href="#">308次播放</a> | <a href="#">629次评论</a></div>
-            </div>
-          </li>
-          <li class="myvideo">
-            <div class="myvideoimg"><img src="../images/my.jpg" />
-              <h3><a href="#">Nancy带你【玩转法兰西】...</a></h3>
-              <span class="play1"><a href="#" title="播放">播放</a></span><span class="time">02:10</span></div>
-            <div class="title1">
-              <div class="jiage"><a href="#">￥15</a></div>
-              <div class="playtime"><a href="#">308次播放</a> | <a href="#">629次评论</a></div>
-            </div>
-          </li>
-          <li class="myvideo">
-            <div class="myvideoimg"><img src="../images/my.jpg" />
-              <h3><a href="#">Nancy带你【玩转法兰西】...</a></h3>
-              <span class="play1"><a href="#" title="播放">播放</a></span><span class="time">02:10</span></div>
-            <div class="title1">
-              <div class="jiage"><a href="#">￥15</a></div>
-              <div class="playtime"><a href="#">308次播放</a> | <a href="#">629次评论</a></div>
-            </div>
-          </li>
-          <li class="myvideo">
-            <div class="myvideoimg"><img src="../images/my.jpg" />
-              <h3><a href="#">Nancy带你【玩转法兰西】...</a></h3>
-              <span class="play1"><a href="#" title="播放">播放</a></span><span class="time">02:10</span></div>
-            <div class="title1">
-              <div class="jiage"><a href="#">￥15</a></div>
-              <div class="playtime"><a href="#">308次播放</a> | <a href="#">629次评论</a></div>
-            </div>
-          </li>
-          <li class="myvideo">
-            <div class="myvideoimg"><img src="../images/my.jpg" />
-              <h3><a href="#">Nancy带你【玩转法兰西】...</a></h3>
-              <span class="play1"><a href="#" title="播放">播放</a></span><span class="time">02:10</span></div>
-            <div class="title1">
-              <div class="jiage"><a href="#">￥15</a></div>
-              <div class="playtime"><a href="#">308次播放</a> | <a href="#">629次评论</a></div>
-            </div>
-          </li>
-          <li class="myvideo">
-            <div class="myvideoimg"><img src="../images/my.jpg" />
-              <h3><a href="#">Nancy带你【玩转法兰西】...</a></h3>
-              <span class="play1"><a href="#" title="播放">播放</a></span><span class="time">02:10</span></div>
-            <div class="title1">
-              <div class="jiage"><a href="#">￥15</a></div>
-              <div class="playtime"><a href="#">308次播放</a> | <a href="#">629次评论</a></div>
-            </div>
-          </li>
-          <li class="myvideo">
-            <div class="myvideoimg"><img src="../images/my.jpg" />
-              <h3><a href="#">Nancy带你【玩转法兰西】...</a></h3>
-              <span class="play1"><a href="#" title="播放">播放</a></span><span class="time">02:10</span></div>
-            <div class="title1">
-              <div class="jiage"><a href="#">￥15</a></div>
-              <div class="playtime"><a href="#">308次播放</a> | <a href="#">629次评论</a></div>
-            </div>
-          </li>
-          <li class="myvideo">
-            <div class="myvideoimg"><img src="../images/my.jpg" />
-              <h3><a href="#">Nancy带你【玩转法兰西】...</a></h3>
-              <span class="play1"><a href="#" title="播放">播放</a></span><span class="time">02:10</span></div>
-            <div class="title1">
-              <div class="jiage"><a href="#">￥15</a></div>
-              <div class="playtime"><a href="#">308次播放</a> | <a href="#">629次评论</a></div>
-            </div>
-          </li>
-        </ul>
-      </div>
-      <!--正在学习的视频-->
-      <div class="studyvideo">
-        <div class="title2">
-          <h1>正在学习的视频</h1>
-        </div>
-        <ul>
-          <li class="myvideo">
-            <div class="myvideoimg"><img src="../images/my.jpg" />
-              <h3><a href="#">Nancy带你【玩转法兰西】...</a></h3>
-              <span class="play1"><a href="#" title="播放">播放</a></span><span class="time">02:10</span></div>
-            <div class="title1">
-              <div class="playtime"><a href="#">308次播放</a> | <a href="#">629次评论</a></div>
-            </div>
-          </li>
-          <li class="myvideo">
-            <div class="myvideoimg"><img src="../images/my.jpg" />
-              <h3><a href="#">Nancy带你【玩转法兰西】...</a></h3>
-              <span class="play1"><a href="#" title="播放">播放</a></span><span class="time">02:10</span></div>
-            <div class="title1">
-              <div class="playtime"><a href="#">308次播放</a> | <a href="#">629次评论</a></div>
-            </div>
-          </li>
-          <li class="myvideo">
-            <div class="myvideoimg"><img src="../images/my.jpg" />
-              <h3><a href="#">Nancy带你【玩转法兰西】...</a></h3>
-              <span class="play1"><a href="#" title="播放">播放</a></span><span class="time">02:10</span></div>
-            <div class="title1">
-              <div class="playtime"><a href="#">308次播放</a> | <a href="#">629次评论</a></div>
-            </div>
-          </li>
-          <li class="myvideo">
-            <div class="myvideoimg"><img src="../images/my.jpg" />
-              <h3><a href="#">Nancy带你【玩转法兰西】...</a></h3>
-              <span class="play1"><a href="#" title="播放">播放</a></span><span class="time">02:10</span></div>
-            <div class="title1">
-              <div class="playtime"><a href="#">308次播放</a> | <a href="#">629次评论</a></div>
-            </div>
-          </li>
-        </ul>
-      </div>
-      <div class="clear"></div>
-      <!--创建的班级-->
-      <div class="cjclass">
-        <div class="title3">
-          <h1>创建的班级</h1>
-        </div>
-        <ul>
-          <li>
-            <div class="cjimg"><img src="../images/grzx/pic.jpg" /></div>
-            <div class="cjtitle"><a href="#">英语辅导班</a></div>
-            <div class="join"><a href="#">加入班级</a></div>
-          </li>
-          <li>
-            <div class="cjimg"><img src="../images/grzx/pic.jpg" /></div>
-            <div class="cjtitle"><a href="#">英语辅导班</a></div>
-            <div class="join"><a href="#">加入班级</a></div>
-          </li>
-          <li>
-            <div class="cjimg"><img src="../images/grzx/pic.jpg" /></div>
-            <div class="cjtitle"><a href="#">英语辅导班</a></div>
-            <div class="join"><a href="#">加入班级</a></div>
-          </li>
-          <li>
-            <div class="cjimg"><img src="../images/grzx/pic.jpg" /></div>
-            <div class="cjtitle"><a href="#">英语辅导班</a></div>
-            <div class="join"><a href="#">加入班级</a></div>
-          </li>
-          <li>
-            <div class="cjimg"><img src="../images/grzx/pic.jpg" /></div>
-            <div class="cjtitle"><a href="#">英语辅导班</a></div>
-            <div class="join"><a href="#">加入班级</a></div>
-          </li>
-        </ul>
-      </div>
-      <!--加入的班级-->
-      <div class="cjclass">
-        <div class="title3">
-          <h1>加入的班级</h1>
-        </div>
-        <ul>
-          <li>
-            <div class="cjimg"><img src="../images/grzx/pic.jpg" /></div>
-            <div class="cjtitle"><a href="#">英语辅导班</a></div>
-            <div class="join"><a href="#">加入班级</a></div>
-          </li>
-          <li>
-            <div class="cjimg"><img src="../images/grzx/pic.jpg" /></div>
-            <div class="cjtitle"><a href="#">英语辅导班</a></div>
-            <div class="join"><a href="#">加入班级</a></div>
-          </li>
-          <li>
-            <div class="cjimg"><img src="../images/grzx/pic.jpg" /></div>
-            <div class="cjtitle"><a href="#">英语辅导班</a></div>
-            <div class="join"><a href="#">加入班级</a></div>
-          </li>
-          <li>
-            <div class="cjimg"><img src="../images/grzx/pic.jpg" /></div>
-            <div class="cjtitle"><a href="#">英语辅导班</a></div>
-            <div class="join"><a href="#">加入班级</a></div>
-          </li>
-          <li>
-            <div class="cjimg"><img src="../images/grzx/pic.jpg" /></div>
-            <div class="cjtitle"><a href="#">英语辅导班</a></div>
-            <div class="join"><a href="#">加入班级</a></div>
-          </li>
-        </ul>
-      </div>
-    </div>
-    <div class="right295">
-      <div class="title4">
-        <h1>心情日志</h1>
-        <a href="#" class="more">更多</a></div>
-      <div class="xqlist">
-        <ul>
-          <li>
-            <div class="xqtx"><img src="../images/grzx/lytx.jpg" /></div>
-            <div class="xqnr">
-              <div class="title5">
-                <h2><a href="#">王老师</a></h2>
-                <span>5小时前</span></div>
-              <div class="xyzs">完善宪法、依法治国，不让党内的腐败份子有空可钻，保障群众的合法利益……</div>
-            </div>
-          </li>
-          <li>
-            <div class="xqtx"><img src="../images/grzx/lytx.jpg" /></div>
-            <div class="xqnr">
-              <div class="title5">
-                <h2><a href="#">王老师</a></h2>
-                <span>5小时前</span></div>
-              <div class="xyzs">完善宪法、依法治国，不让党内的腐败份子有空可钻，保障群众的合法利益……</div>
-            </div>
-          </li>
-        </ul>
-      </div>
-      <!--我的好友-->
-      <div class="myfriend">
-        <div class="title4">
-          <h1>我的好友</h1>
-        </div>
-        <ul>
-          <li> <a href="#"><img src="../images/grzx/lytx.jpg" />情为何物</a> </li>
-          <li> <a href="#"><img src="../images/grzx/lytx.jpg" />情为何物</a> </li>
-          <li> <a href="#"><img src="../images/grzx/lytx.jpg" />情为何物</a> </li>
-          <li> <a href="#"><img src="../images/grzx/lytx.jpg" />情为何物</a> </li>
-          <li> <a href="#"><img src="../images/grzx/lytx.jpg" />情为何物</a> </li>
-          <li> <a href="#"><img src="../images/grzx/lytx.jpg" />情为何物</a> </li>
-          <li> <a href="#"><img src="../images/grzx/lytx.jpg" />情为何物</a> </li>
-          <li> <a href="#"><img src="../images/grzx/lytx.jpg" />情为何物</a> </li>
-        </ul>
-      </div>
-      <!--最近访客-->
-      <div class="zjfk">
-        <div class="title4">
-          <h1>最近访客</h1>
-        </div>
-        <ul>
-          <li> <a href="#"><img src="../images/grzx/lytx.jpg" />情为何物</a> </li>
-          <li> <a href="#"><img src="../images/grzx/lytx.jpg" />情为何物</a> </li>
-          <li> <a href="#"><img src="../images/grzx/lytx.jpg" />情为何物</a> </li>
-          <li> <a href="#"><img src="../images/grzx/lytx.jpg" />情为何物</a> </li>
-        </ul>
-      </div>
-      <!--目友留言-->
-      <div class="title4">
-        <h1>目友留言</h1>
-      </div>
-      <div class="xqlist">
-        <ul>
-          <li>
-            <div class="xqtx"><img src="../images/grzx/lytx.jpg" /></div>
-            <div class="xqnr">
-              <div class="title5">
-                <h2><a href="#">王老师</a></h2>
-                <span>5小时前</span></div>
-              <div class="xyzs">完善宪法、依法治国，不让党内的腐败份子有空可钻，保障群众的合法利益……</div>
-            </div>
-          </li>
-          <li>
-            <div class="xqtx"><img src="../images/grzx/lytx.jpg" /></div>
-            <div class="xqnr">
-              <div class="title5">
-                <h2><a href="#">王老师</a></h2>
-                <span>5小时前</span></div>
-              <div class="xyzs">完善宪法、依法治国，不让党内的腐败份子有空可钻，保障群众的合法利益……</div>
-            </div>
-          </li>
-        </ul>
-      </div>
-      <!--留言板-->
-      <div class="title4">
-        <h1>留言板</h1>
-      </div>
-      <div class="team_l">
-        <textarea name="" cols="48" rows="10" class="input2" value="说点什么吧..."></textarea>
-        <br />
-        <div class="biaoqing"><img src="../images/grzx/bq.jpg" /><a href="#">添加表情</a></div>
-        <input type="submit" name="Submit" class="btn3" value="确定发布">
-      </div>
+    <div class="display">
+      <table width="840" height="900" align="center" cellspacing="0" cellpadding="0" class="tab">
+        <tr>
+          <td><font class="f_red">*</font>&nbsp;&nbsp;&nbsp;<b>用户名:</b></td>
+          <td>&nbsp;&nbsp;&nbsp;afsdfds@163.com &nbsp;&nbsp;&nbsp;<a href="#">[修改]</a></td>
+        </tr>
+        <tr>
+          <td><font class="f_red">*</font>&nbsp;&nbsp;&nbsp;<b>邮 箱:</b></td>
+          <td>&nbsp;&nbsp;&nbsp;afsdfds@163.com &nbsp;&nbsp;&nbsp;<a href="#">[修改]</a></td>
+        </tr>
+        <tr>
+          <td><font class="f_red">*</font>&nbsp;&nbsp;&nbsp;<b>手 机:</b></td>
+          <td>&nbsp;&nbsp;&nbsp;
+            <input type="text" class="input1"  name=""/>
+            &nbsp;&nbsp;&nbsp;<font class="f_red">*</font>&nbsp;&nbsp;&nbsp;<font class="f_black">请输入数字</font></td>
+        </tr>
+        <tr>
+          <td>&nbsp;&nbsp;&nbsp;<b>个人介绍:</b></td>
+          <td>&nbsp;&nbsp;&nbsp;
+            <textarea name="textarea" class="input4" style="width:430px; height:130px;"></textarea></td>
+        </tr>
+        <tr>
+          <td><font class="f_red">*</font>&nbsp;&nbsp;&nbsp;<b>所在地:</b></td>
+          <td>&nbsp;&nbsp;&nbsp;
+            <select class="input5">
+              <option>选择省份</option>
+            </select>
+            &nbsp;
+            <select class="input5">
+              <option>选择市</option>
+            </select>
+            &nbsp;
+            <select class="input5">
+              <option>选择区/县</option>
+            </select></td>
+
+        <tr>
+          <td></td>
+          <td colspan="2">&nbsp;&nbsp;&nbsp;
+            <input type="submit" value="保存信息" class="btn1" />
+            &nbsp;&nbsp;&nbsp;
+            <input  type="reset" value="取消" class="btn4" /></td>
+        </tr>
+      </table>
     </div>
   </div>
 </div>
 <div class="clear"></div>
-  </div>
+
   <div class="copyright">
-    <div class="copy">Copyright © 2017 茜茜爸爸儿童家庭学堂课程平台<br />
+    <div class="copy">Copyright © 2017 茜茜爸爸儿童家庭学堂课程平台</a><br />
       <font class="f_red">当前在线人数：<b>154588</b> 人</font></div>
   </div>
 </div>

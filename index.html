@@ -45,9 +45,28 @@ EvPNG.fix('img,.content,.svc-payment,.svc-gathering,.svc-weg,.svc-tx,.svc-credit
 <!--快捷导航-->
 <div class="kjnav">
 <ul>
-<li class="navli1"><a href="#">APP下载</a></li>
-<li class="navli2"><a href="#">收藏我们</a></li>
-<li class="navli3"><a href="#">新手引导</a></li>
+  <!--添加进收藏夹功能-->
+  <script>
+  function addToFavorite(sTitle,sURL)
+  {
+    try
+    {
+      window.external.addFavorite(sURL, sTitle);
+    }
+    catch (e)
+    {
+      try
+      {
+        window.sidebar.addPanel(sTitle, sURL, "");
+      }
+      catch (e)
+      {
+        alert("您的浏览器不支持自动加入收藏夹，请使用Ctrl+D进行手动添加");
+      }
+    }
+  }
+  </script>
+  <li class="navli2"><a href="javascript:void(0)" onclick="addToFavorite(document.title,window.location)">收藏我们</a></li>
 </ul>
 </div>
 </div>
@@ -264,7 +283,7 @@ EvPNG.fix('img,.content,.svc-payment,.svc-gathering,.svc-weg,.svc-tx,.svc-credit
     <div class="oricolumn">
       <div class="title2">
         <h1>原创精品</h1>
-        <h2><a href="原创列表页.html">目课出品</a></h2>
+        <h2><a href="原创列表页.html">茜茜爸爸</a></h2>
       </div>
       <div class="clear"></div>
       <div class="orilist">

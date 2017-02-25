@@ -16,7 +16,8 @@ create table user
     email varchar(50),
     phone varchar(50),
     status int,
-    location varchar(50)
+    location varchar(50),
+    introduction varchar(150)
 );
 
 create table course
