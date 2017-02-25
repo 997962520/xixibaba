@@ -20,10 +20,8 @@ EvPNG.fix('img,.content,.svc-payment,.svc-gathering,.svc-weg,.svc-tx,.svc-credit
         <div class="so_so">
           <div class="logo"><a href="#" title="茜茜爸爸"><img src="../images/logo.jpg" / alt="茜茜爸爸"></a></div>
           <div class="mk_so">
-            <form id =form name="form" method="get" action="../search_course.php">
-              <input type="text" class="input"  id="search_content" name="search_content"/>
-              <input type="image" src="../images/btn.jpg" class="btn" onclick="this.form.submit()"/>
-            </form>
+            <input type="text" class="input"  name=""/>
+            <input type="image" src="../images/btn.jpg" class="btn" />
           </div>
         </div>
         <div class="topmenu">
@@ -31,28 +29,9 @@ EvPNG.fix('img,.content,.svc-payment,.svc-gathering,.svc-weg,.svc-tx,.svc-credit
           <div class="hylist">
             <ul>
               <li class="li1"><a href="user.html">会员</a></li>
-              <!--添加进收藏夹功能-->
-              <script>
-                function addToFavorite(sTitle,sURL)
-                {
-                  try
-                  {
-                    window.external.addFavorite(sURL, sTitle);
-                  }
-                  catch (e)
-                  {
-                    try
-                    {
-                      window.sidebar.addPanel(sTitle, sURL, "");
-                    }
-                    catch (e)
-                    {
-                      alert("您的浏览器不支持自动加入收藏夹，请使用Ctrl+D进行手动添加");
-                    }
-                  }
-                }
-              </script>
-              <li class="li4"><a href="javascript:void(0)" onclick="addToFavorite(document.title,window.location)">收藏我们</a></li>
+              <li class="li2"><a href="javascript:void(0);" onclick="showA();">注册</a>/<a href="javascript:void(0);" onclick="showB();">登陆</a></li>
+              <li class="li3"><a href="#">APP下载</a></li>
+              <li class="li4"><a href="#">收藏我们</a></li>
             </ul>
           </div>
 		  				  <!--注册登录隐藏--->
@@ -139,98 +118,55 @@ EvPNG.fix('img,.content,.svc-payment,.svc-gathering,.svc-weg,.svc-tx,.svc-credit
         }
     </script>
     <ul class="menu2">
-      <li><a href="../个人中心-我加入的班级.html"><em>班级管理</em></a></li>
+      <li><a href="个人中心-我加入的班级.html"><em>班级管理</em></a></li>
       <div class="menubox">
-        <p><a href="../个人中心-我加入的班级.html" >我创建的班级</a></p>
-        <p><a href="../个人中心-我加入的班级.html" >我加入的班级</a></p>
+        <p><a href="个人中心-我加入的班级.html" >我创建的班级</a></p>
+        <p><a href="个人中心-我加入的班级.html" >我加入的班级</a></p>
       </div>
     </ul>
     <ul class="menu3">
       <li><a href="#"><em>视频管理</em></a></li>
       <div class="menubox">
-        <p><a href="../个人中心-上传视频.html" >上传视频</a></p>
+        <p><a href="个人中心-上传视频.html" >上传视频</a></p>
         <p><a href="#" >我的收藏</a></p>
-        <p><a href="../个人中心-观看记录.html" >观看记录</a></p>
+        <p><a href="个人中心-观看记录.html" >观看记录</a></p>
       </div>
     </ul>
     <ul class="menu4">
       <li><a href="#"><em>我的互动</em></a></li>
       <div class="menubox">
-        <p><a href="../个人中心-我的笔记.html" >我的笔记</a></p>
-        <p><a href="../个人中心-心情日志.html" >心情日志</a></p>
-        <p><a href="../个人中心-我的回答.html" >我的提问</a></p>
-        <p><a href="../个人中心-我的回答.html" >我的回答</a></p>
-        <p><a href="../个人中心-留言.html" >留言板</a></p>
+        <p><a href="个人中心-我的笔记.html" >我的笔记</a></p>
+        <p><a href="个人中心-心情日志.html" >心情日志</a></p>
+        <p><a href="个人中心-我的回答.html" >我的提问</a></p>
+        <p><a href="个人中心-我的回答.html" >我的回答</a></p>
+        <p><a href="个人中心-留言.html" >留言板</a></p>
       </div>
     </ul>
     <ul class="menu5">
-      <li><a href="../个人中心-我的视频.html"><em>我的课程</em></a></li>
+      <li><a href="个人中心-我的视频.html"><em>我的课程</em></a></li>
       <div class="menubox">
-        <p><a href="../个人中心-我的视频.html" >学习中视频</a></p>
-        <p><a href="../个人中心-我的视频.html" >猜你喜欢</a></p>
-        <p><a href="../个人中心-我的慕课.html" >我的慕课</a></p>
+        <p><a href="个人中心-我的视频.html" >学习中视频</a></p>
+        <p><a href="个人中心-我的视频.html" >猜你喜欢</a></p>
+        <p><a href="个人中心-我的慕课.html" >我的慕课</a></p>
       </div>
     </ul>
   </div>
-  <!--右侧部分-->
-  <div class="right840">
-    <div class="title6">
-      <h1><a href="user.html" class="on">信息完善</a></h1>
-      <h1><a href="user_icon.html">修改头像</a></h1>
-      <h1><a href="user_security.html">账户安全</a></h1>
-    </div>
-    <div class="display">
-      <table width="840" height="900" align="center" cellspacing="0" cellpadding="0" class="tab">
-        <tr>
-          <td><font class="f_red">*</font>&nbsp;&nbsp;&nbsp;<b>用户名:</b></td>
-          <td>&nbsp;&nbsp;&nbsp;afsdfds@163.com &nbsp;&nbsp;&nbsp;<a href="#">[修改]</a></td>
-        </tr>
-        <tr>
-          <td><font class="f_red">*</font>&nbsp;&nbsp;&nbsp;<b>邮 箱:</b></td>
-          <td>&nbsp;&nbsp;&nbsp;afsdfds@163.com &nbsp;&nbsp;&nbsp;<a href="#">[修改]</a></td>
-        </tr>
-        <tr>
-          <td><font class="f_red">*</font>&nbsp;&nbsp;&nbsp;<b>手 机:</b></td>
-          <td>&nbsp;&nbsp;&nbsp;
-            <input type="text" class="input1"  name=""/>
-            &nbsp;&nbsp;&nbsp;<font class="f_red">*</font>&nbsp;&nbsp;&nbsp;<font class="f_black">请输入数字</font></td>
-        </tr>
-        <tr>
-          <td>&nbsp;&nbsp;&nbsp;<b>个人介绍:</b></td>
-          <td>&nbsp;&nbsp;&nbsp;
-            <textarea name="textarea" class="input4" style="width:430px; height:130px;"></textarea></td>
-        </tr>
-        <tr>
-          <td><font class="f_red">*</font>&nbsp;&nbsp;&nbsp;<b>所在地:</b></td>
-          <td>&nbsp;&nbsp;&nbsp;
-            <select class="input5">
-              <option>选择省份</option>
-            </select>
-            &nbsp;
-            <select class="input5">
-              <option>选择市</option>
-            </select>
-            &nbsp;
-            <select class="input5">
-              <option>选择区/县</option>
-            </select></td>
-
-        <tr>
-          <td></td>
-          <td colspan="2">&nbsp;&nbsp;&nbsp;
-            <input type="submit" value="保存信息" class="btn1" />
-            &nbsp;&nbsp;&nbsp;
-            <input  type="reset" value="取消" class="btn4" /></td>
-        </tr>
-      </table>
-    </div>
-  </div>
+ <!--右侧部分-->
+ <div class="right840">
+ <div class="title6"><h1><a href="user.html">信息完善</a></h1><h1><a href="user_icon.html">修改头像</a></h1><h1><a href="user_security.html" class="on">账户安全</a></h1></div>
+ <div class="display">
+ <img src="../images/grzx/xgpic.jpg" />
+ </div>
+ </div>
 </div>
 <div class="clear"></div>
-
+<div id="footer">
+  <div class="links">
   <div class="copyright">
     <div class="copy">Copyright © 2017 茜茜爸爸儿童家庭学堂课程平台</a><br />
-      <font class="f_red">当前在线人数：<b>154588</b> 人</font></div>
+      <font class="f_red">当前在线人数：<b>154588</b> 人</font>
+    </div>
+  </div>
   </div>
 </div>
 </body>
