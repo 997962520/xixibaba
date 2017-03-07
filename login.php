@@ -28,7 +28,7 @@ if(count($result)!=0) //用户名密码输入正确 登陆成功
           </form>';
 
     echo "<script type='text/javascript'>document.cookie.submit();</script>";
-    echo "<script type='text/javascript'>alert('登录完成，将进入个人中心');location='user/user.php';</script>";
+    echo "<script type='text/javascript'>alert('登录完成，将进入个人中心');location='user/user.html';</script>";
 }
 else//用户名或密码错误
 {

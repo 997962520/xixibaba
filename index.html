@@ -25,7 +25,15 @@ EvPNG.fix('img,.content,.svc-payment,.svc-gathering,.svc-weg,.svc-tx,.svc-credit
 <div class="head">
 <div class="headm">
 <!--登陆后显示会员-->
-<div class="member"><div class="huiyuan"><ul><li class="hy1"><a href="#">会员</a></li><li class="hy2"><a href="javascript:void(0);" onclick="showA();">注册</a></li></ul>		  				  <!--注册登录隐藏--->
+  <script>
+    function logout(){
+      if (confirm("确认退出？")){
+        top.location = "logout.php";
+      }
+      return false;
+    }
+  </script>
+<div class="member"><div class="huiyuan"><ul><li class="hy1"><a href="#" onclick="logout();">注销</a></li><li class="hy2"><a href="javascript:void(0);" onclick="showA();">注册</a></li></ul>		  				  <!--注册登录隐藏--->
 	  <div id="pop" class="pop" style="display:none"> 
 <div class="pop_head"><a href="javascript:void(0);" onclick="hideA()">关闭</a></div> 
 <div class="pop_body">

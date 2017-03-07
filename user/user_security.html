@@ -28,7 +28,15 @@ EvPNG.fix('img,.content,.svc-payment,.svc-gathering,.svc-weg,.svc-tx,.svc-credit
           <div class="xsyd"><a href="#" target="_blank">新手引导</a></div>
           <div class="hylist">
             <ul>
-              <li class="li1"><a href="user.html">会员</a></li>
+                <script>
+                function logout(){
+                    if (confirm("确认退出？")){
+                        top.location = "../logout.php";
+                    }
+                    return false;
+                }
+                </script>
+                <li class="li1"><a href="#" onclick="logout();">注销</a></li>
                 <!--添加进收藏夹功能-->
                 <script>
                     function addToFavorite(sTitle,sURL)
