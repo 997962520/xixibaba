@@ -29,9 +29,28 @@ EvPNG.fix('img,.content,.svc-payment,.svc-gathering,.svc-weg,.svc-tx,.svc-credit
           <div class="hylist">
             <ul>
               <li class="li1"><a href="user.html">会员</a></li>
-              <li class="li2"><a href="javascript:void(0);" onclick="showA();">注册</a>/<a href="javascript:void(0);" onclick="showB();">登陆</a></li>
-              <li class="li3"><a href="#">APP下载</a></li>
-              <li class="li4"><a href="#">收藏我们</a></li>
+              <!--添加进收藏夹功能-->
+              <script>
+                function addToFavorite(sTitle,sURL)
+                {
+                  try
+                  {
+                    window.external.addFavorite(sURL, sTitle);
+                  }
+                  catch (e)
+                  {
+                    try
+                    {
+                      window.sidebar.addPanel(sTitle, sURL, "");
+                    }
+                    catch (e)
+                    {
+                      alert("您的浏览器不支持自动加入收藏夹，请使用Ctrl+D进行手动添加");
+                    }
+                  }
+                }
+              </script>
+              <li class="li4"><a href="javascript:void(0)" onclick="addToFavorite(document.title,window.location)">收藏我们</a></li>
             </ul>
           </div>
 		  				  <!--注册登录隐藏--->
