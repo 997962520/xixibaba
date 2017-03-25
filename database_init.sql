@@ -4,7 +4,7 @@
 drop database xixibaba;
 #创建
 
-create database xixibaba;
+create database xixibaba character set utf8;
 
 use xixibaba;
 

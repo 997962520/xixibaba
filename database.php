@@ -10,7 +10,7 @@ class database{
 		$this->mysql_host = 'localhost';
 		$this->mysql_db = 'xixibaba';
 		$this->mysql_user = 'root';
-		$this->mysql_password = '123456';//你的MySQL密码
+		$this->mysql_password = '';//你的MySQL密码
 		$this->mysql_port = 3306;
 		$this -> connect_to_db();
 	}
