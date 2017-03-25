@@ -25,12 +25,12 @@ else
 {
     $result_email=$my_db->database_get("select email from user where email='$email'");//判断用户名和邮箱是否已经注册了
     $result_username=$my_db->database_get("select name from user where name='$username'");
-    if(count_chars($result_email)!=0 || count($result_username)!=0)
+    if(count($result_email)!=0 || count($result_username)!=0)
     {
         echo"<script type='text/javascript'>alert('该用户名和邮箱已被注册');location='index.html';</script>";
     }
     $table='user';
-    $values = array('name'=>$username,'password'=>$password, 'email'=>$email,'phone'=>'','location'=>'');
+    $values = array('name'=>$username,'password'=>$password, 'email'=>$email,'phone'=>'','status'=>1,'location'=>'','introduction'=>'');
     $my_db->insert_to_db($table,$values);
 
     $result = $my_db->database_get("select name from user where name='$username'");
