@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>茜茜爸爸儿童家庭学堂社区中心</title>
+<link href="../css/whir_common.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.container{ width:835px; height:auto; margin:10% auto 0;}
+.tcTop { background:url(../images/tbg.png) no-repeat left top; height:30px; position:relative; z-index:999;}
+.closeBtn{  width:51px; height:51px; position:absolute; right:0px; top:-15px;}
+.closeBtn a{ display:block; width:51px; height:51px; background:url(../images/close1.png) no-repeat;}
+.closeBtn a:hover{ background:url(../images/close1h.png) no-repeat;}
+.tcMiddle{ background:url(../images/mbg.png) repeat-y left top; width:835px; height:auto;}
+.content_news{line-height:26px; font-size:14px; padding:30px 40px 25px 40px; color:#555555;}
+.cen{ font-family:"微软雅黑"; line-height:28px; font-size:18px; color:#121212; text-align:center; padding:10px 0px 10px 0px; }
+.titleinfo{ border:1px dashed #999999; margin:0px 38px; text-align:center; color:#6b6b6b; line-height:32px;}
+.title{ width:805px; height:30px; border-bottom:1px solid  #CCCCCC; margin:0 auto;}
+.title h1{ font-family:"微软雅黑"; width:250px; line-height:30px; font-size:18px; text-align:center; border-bottom:1px solid #0099FF; color:#6b6b6b; margin:0 auto;}
+.tab{ color:#555555; font-size:14px;}
+.input1{ width:415px; height:25px; border:1px solid #c1c1c1; padding-left:10px; font-size:14px; color:#555555;}
+.select{ width:194px; height:25px; border:1px solid #c1c1c1; font-size:14px; color:#555555;}
+.input2{ width:220px; height:25px; border:1px solid #c1c1c1; padding-left:10px; font-size:14px; color:#555555;}
+.input3{ width:600px; height:75px; border:1px solid #c1c1c1; padding-left:10px; font-size:14px; color:#555555;}
+.btn1{ width:64px; height:26px; background:url(../images/tj.jpg) no-repeat; color:#fff; text-align:center; border:0px; cursor:pointer;}
+.btn2{ width:64px; height:26px; background:url(../images/qx.jpg) no-repeat; color:#fff; text-align:center; border:0px; cursor:pointer;}
+</style>
+<script>
+ function  success() {
+     alert("创建成功");
+ }   
+</script>
+</head>
+<body>
+<div class="container">
+  <div class="tcTop">
+    <div class="closeBtn"><a href="Javascript:window.history.go(-1)"></a></div>
+  </div>
+  <div class="tcMiddle">
+    <div class="title"><h1>创建社区</h1></div>
+    <div class="content_news">
+	<table cellpadding="0" cellspacing="0" width="95%" align="center" height="240" class="tab">
+	<form action="createCommunity.php" method="post">
+	<tr><td>社区名称：</td><td><input type="text" class="input1" name="name"></td></tr>
+	<tr><td>社区位置：</td><td><select class="select" name="location">
+        <option value="北京">北京</option>
+        <option value="上海">上海</option>
+        <option value="广东">广东</option>
+        <option value="安徽">安徽</option>
+        <option value="广西">广西</option>
+        <option value="浙江">浙江</option>
+        <option value="湖南">湖南</option>
+        <option value="湖北">湖北</option>
+        <option value="福建">福建</option>
+        <option value="山东">山东</option>
+        <option value="山西">山西</option>
+        <option value="云南">云南</option>
+        <option value="江苏">江苏</option>
+        <option value="江西">江西</option>
+    </select></td></tr>
+	<tr><td>社区描述：</td><td><textarea class="input3" placeholder="写点什么吧-_-" name="description"></textarea></td></tr>
+	<tr><td>社区头像：</td><td><input type="file"  class="input1" name="file"></td></tr>
+	<tr><td></td><td ><input type="submit" class="btn1" value="提交" name="submit" formtarget="_self" onclick="succes()">&nbsp;&nbsp;&nbsp;<input type="reset" class="btn2" value="取消"></td></tr>
+	</form>
+	</table>
+    </div>
+  </div>
+  <div class="tcBottom"><img src="../images/btg.png"  /></div>
+</div>
+</body>
+</html>
