@@ -106,7 +106,7 @@ EvPNG.fix('img,.content,.svc-payment,.svc-gathering,.svc-weg,.svc-tx,.svc-credit
         <div class="nav">
           <ul>
             <li><a href="../index.html" class="on">首页</a></li>
-            <li><a href="user.html">个人中心</a></li>
+            <li><a href="user.php">个人中心</a></li>
             <li><a href="../course.php">课程中心</a></li>
           </ul>
         </div>
@@ -131,12 +131,12 @@ EvPNG.fix('img,.content,.svc-payment,.svc-gathering,.svc-weg,.svc-tx,.svc-credit
     <ul class="menu1">
       <li class="on"><a onclick="return click_a('divOne_1')" style="cursor:pointer;"><em id="div_one">个人中心</em></a></li>
       <div class="menu1_sub" id="divOne_1" style="display:none;">
-        <p><a href="user.html" >信息完善</a></p>
+        <p><a href="user.php" >信息完善</a></p>
         <p><a href="user_icon.html" >修改头像</a></p>
         <p><a href="user_security.html" >账户安全</a></p>
       </div>
       <div class="menubox">
-        <p><a href="user.html" >个人资料</a></p>
+        <p><a href="user.php" >个人资料</a></p>
         <p><a href="user_icon.html" >修改头像</a></p>
         <p><a href="user_security.html" >账户安全</a></p>
       </div>
