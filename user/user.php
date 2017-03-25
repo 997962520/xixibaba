@@ -6,6 +6,11 @@ session_start();
  * Date: 2017/1/15
  * Time: 11:09
  */
+
+
+if(!isset($_SESSION['user_name']))
+    echo "<script type='text/javascript'>alert('未登录，不能进入个人中心');location='../index.html';</script>";
+
 $html_A=<<<HTML
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
