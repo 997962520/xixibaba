@@ -11,6 +11,13 @@ session_start();
 if(!isset($_SESSION['user_name']))
     echo "<script type='text/javascript'>alert('未登录，不能进入个人中心');location='../index.html';</script>";
 
+require_once '../database.php';
+$user_name = $_SESSION['user_name'];
+$my_db=new database();
+$result=$my_db->database_get("select name,email,phone,location,introduction from user where name=$user_name");
+$old_user_location=$result[0]['location'];
+$old_user_phone=$result[0]['phone'];
+
 $html_A=<<<HTML
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -131,7 +138,7 @@ EvPNG.fix('img,.content,.svc-payment,.svc-gathering,.svc-weg,.svc-tx,.svc-credit
   <div class="left180">
     <div class="grtx">
       <div class="grimg"><img src="../images/grzx/grtx.jpg" /></div>
-      <div class="grname"><a href="#">王老师</a></div>
+      <div class="grname"><a href="#">$user_name</a></div>
     </div>
     <ul class="menu1">
       <li class="on"><a onclick="return click_a('divOne_1')" style="cursor:pointer;"><em id="div_one">个人中心</em></a></li>
@@ -189,7 +196,6 @@ EvPNG.fix('img,.content,.svc-payment,.svc-gathering,.svc-weg,.svc-tx,.svc-credit
       <div class="menubox">
         <p><a href="../个人中心-我的视频.html" >学习中视频</a></p>
         <p><a href="../个人中心-我的视频.html" >猜你喜欢</a></p>
-        <p><a href="../个人中心-我的慕课.html" >我的慕课</a></p>
       </div>
     </ul>
   </div>
@@ -213,6 +219,7 @@ HTML;
         </tr>
 */
 $html_user_A=<<<HTML
+        <form method="get" action="user.php">
         <tr>
           <td><font class="f_red">*</font>&nbsp;&nbsp;&nbsp;<b>用户名:</b></td>
           <td>&nbsp;&nbsp;&nbsp;
@@ -231,37 +238,33 @@ $html_user_C=<<<HTML
         </tr>
 HTML;
 
-$html_B=<<<HTML
+$html_user_D=<<<HTML
         <tr>
           <td><font class="f_red">*</font>&nbsp;&nbsp;&nbsp;<b>手 机:</b></td>
           <td>&nbsp;&nbsp;&nbsp;
-            <input type="text" class="input1"  name=""/>
+            <input type="text" class="input1"  name="user_phone" value=$old_user_phone>
             &nbsp;&nbsp;&nbsp;<font class="f_red">*</font>&nbsp;&nbsp;&nbsp;<font class="f_black">请输入数字</font></td>
         </tr>
         <tr>
           <td>&nbsp;&nbsp;&nbsp;<b>个人介绍:</b></td>
           <td>&nbsp;&nbsp;&nbsp;
-            <textarea name="textarea" class="input4" style="width:430px; height:130px;"></textarea></td>
+            <textarea name="user_introduction" class="input4" style="width:430px; height:130px;">{$result[0]['introduction']}</textarea></td>
         </tr>
         <tr>
           <td><font class="f_red">*</font>&nbsp;&nbsp;&nbsp;<b>所在地:</b></td>
           <td>&nbsp;&nbsp;&nbsp;
-            <select style="width:100px; " onchange="sech(this.id)" id="province">
-              <option value="province">请选择省份</option>
-            </select>
-            <select onchange="sech(this.id)" id="city">
-              <option value="city">请选择市区</option>
-            </select>
-            <select id="county">
-              <option value="county">请选择县乡</option>
-            </select>
+          <input type="text" class="input1"  name="user_location" value=$old_user_location>
+            &nbsp;&nbsp;&nbsp;<font class="f_red">*</font>&nbsp;&nbsp;&nbsp;<font class="f_black">请输入所在地</font></td>
           </td>
-
-        <tr>
+          <tr>
           <td></td>
           <td colspan="2">&nbsp;&nbsp;&nbsp;
             <input type="submit" value="保存信息" class="btn1" />
-        </tr>
+           </tr>
+          </form>
+HTML;
+
+$html_B=<<<HTML
       </table>
     </div>
   </div>
@@ -277,16 +280,15 @@ $html_B=<<<HTML
 </html>
 HTML;
 echo $html_A;
-require_once '../database.php';
-$user_name = $_SESSION['user_name'];
-/*$old_password = $_GET['old_password'];
-$new_password = $_GET['new_password'];
-$confirm_new_password = $_GET['confirm_new_password'];*/
-$my_db=new database();
-$result=$my_db->database_get("select name,email,phone,location,introduction from user where name=$user_name");
 echo $html_user_A;
 echo $result[0]['name'];
 echo $html_user_B;
 echo $result[0]['email'];
 echo $html_user_C;
+echo $html_user_D;
 echo $html_B;
+$user_phone=$_GET['user_phone'];
+$user_introduction=$_GET['user_introduction'];
+$user_location=$_GET['user_location'];
+$my_db->database_do("update user set phone=$user_phone,introduction=$user_introduction,location=$user_location WHERE name=$user_name");
+echo $user_phone;

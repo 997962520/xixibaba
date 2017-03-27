@@ -22,7 +22,7 @@ else//两次输入密码一致，判断旧密码输入是否正确
     $real_password=$my_db->database_get("select password from user where name='$user_name'");
     if($old_password==$real_password[0]['password'])//旧密码输入正确
     {
-        $my_db->database_do("insert into user (password) values ('$new_password') where name='$user_name'");
+        $my_db->database_do("update user set password=$new_password where name='$user_name'");
         echo "<script type='text/javascript'>alert('密码修改成功，请牢记您的密码！');location='user_security.html';</script>";
     }
     else//旧密码输入错误
