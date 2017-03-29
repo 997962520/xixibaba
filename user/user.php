@@ -8,17 +8,18 @@ session_start();
  */
 
 
-if(!isset($_SESSION['user_name']))
+if (!isset($_SESSION['user_name']))
     echo "<script type='text/javascript'>alert('未登录，不能进入个人中心');location='../index.html';</script>";
 
 require_once '../database.php';
 $user_name = $_SESSION['user_name'];
-$my_db=new database();
-$result=$my_db->database_get("select name,email,phone,location,introduction from user where name=$user_name");
-$old_user_location=$result[0]['location'];
-$old_user_phone=$result[0]['phone'];
+$my_db = new database();
+$result = $my_db->database_get("select name,email,phone,location,introduction from user where name=$user_name");
+$old_user_location = $result[0]['location'];
+$old_user_phone = $result[0]['phone'];
+$old_user_introduction = $result[0]['introduction'];
 
-$html_A=<<<HTML
+$html_A = <<<HTML
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -120,6 +121,7 @@ EvPNG.fix('img,.content,.svc-payment,.svc-gathering,.svc-weg,.svc-tx,.svc-credit
             <li><a href="../index.html" class="on">首页</a></li>
             <li><a href="user.php">个人中心</a></li>
             <li><a href="../course.php">课程中心</a></li>
+            <li><a href="../community/community.php">社区中心</a></li>
           </ul>
         </div>
         <div class="question">
@@ -218,53 +220,34 @@ HTML;
           <td>&nbsp;&nbsp;&nbsp;afsdfds@163.com &nbsp;&nbsp;&nbsp;<a href="#"></a></td>
         </tr>
 */
-$html_user_A=<<<HTML
-        <form method="get" action="user.php">
+$html_user_A = <<<HTML
+      <form method="get" action="user_change_information.php">
         <tr>
           <td><font class="f_red">*</font>&nbsp;&nbsp;&nbsp;<b>用户名:</b></td>
-          <td>&nbsp;&nbsp;&nbsp;
-HTML;
-
-$html_user_B=<<<HTML
- &nbsp;&nbsp;&nbsp;<a href="#"></a></td>
+          <td>&nbsp;&nbsp;&nbsp;{$user_name}&nbsp;&nbsp;&nbsp;<a href="#"></a></td>
         </tr>
         <tr>
           <td><font class="f_red">*</font>&nbsp;&nbsp;&nbsp;<b>邮 箱:</b></td>
-          <td>&nbsp;&nbsp;&nbsp;
-HTML;
-
-$html_user_C=<<<HTML
-        &nbsp;&nbsp;&nbsp;<a href="#"></a></td>
+          <td>&nbsp;&nbsp;&nbsp;{$result[0]['email']}&nbsp;&nbsp;&nbsp;<a href="#"></a></td>
         </tr>
-HTML;
-
-$html_user_D=<<<HTML
         <tr>
           <td><font class="f_red">*</font>&nbsp;&nbsp;&nbsp;<b>手 机:</b></td>
-          <td>&nbsp;&nbsp;&nbsp;
-            <input type="text" class="input1"  name="user_phone" value=$old_user_phone>
-            &nbsp;&nbsp;&nbsp;<font class="f_red">*</font>&nbsp;&nbsp;&nbsp;<font class="f_black">请输入数字</font></td>
+          <td>&nbsp;&nbsp;&nbsp;<input type="text" class="input1"  name="user_phone" value=$old_user_phone>&nbsp;&nbsp;&nbsp;<font class="f_red">*</font>&nbsp;&nbsp;&nbsp;<font class="f_black">请输入数字</font></td>
         </tr>
         <tr>
           <td>&nbsp;&nbsp;&nbsp;<b>个人介绍:</b></td>
-          <td>&nbsp;&nbsp;&nbsp;
-            <textarea name="user_introduction" class="input4" style="width:430px; height:130px;">{$result[0]['introduction']}</textarea></td>
+          <td>&nbsp;&nbsp;&nbsp;<textarea name="user_introduction" class="input4" style="width:430px; height:130px;">{$old_user_introduction}</textarea></td>
         </tr>
         <tr>
           <td><font class="f_red">*</font>&nbsp;&nbsp;&nbsp;<b>所在地:</b></td>
-          <td>&nbsp;&nbsp;&nbsp;
-          <input type="text" class="input1"  name="user_location" value=$old_user_location>
-            &nbsp;&nbsp;&nbsp;<font class="f_red">*</font>&nbsp;&nbsp;&nbsp;<font class="f_black">请输入所在地</font></td>
-          </td>
-          <tr>
-          <td></td>
-          <td colspan="2">&nbsp;&nbsp;&nbsp;
-            <input type="submit" value="保存信息" class="btn1" />
-           </tr>
-          </form>
+          <td>&nbsp;&nbsp;&nbsp;<input type="text" class="input1"  name="user_location" value=$old_user_location>&nbsp;&nbsp;&nbsp;<font class="f_red">*</font>&nbsp;&nbsp;&nbsp;<font class="f_black">请输入所在地</font></td>
+        <tr>
+          <td colspan="2">&nbsp;&nbsp;&nbsp;<input type="submit" value="保存信息" class="btn1" /></td>
+        </tr>
+       </form>
 HTML;
 
-$html_B=<<<HTML
+$html_B = <<<HTML
       </table>
     </div>
   </div>
@@ -281,14 +264,4 @@ $html_B=<<<HTML
 HTML;
 echo $html_A;
 echo $html_user_A;
-echo $result[0]['name'];
-echo $html_user_B;
-echo $result[0]['email'];
-echo $html_user_C;
-echo $html_user_D;
 echo $html_B;
-$user_phone=$_GET['user_phone'];
-$user_introduction=$_GET['user_introduction'];
-$user_location=$_GET['user_location'];
-$my_db->database_do("update user set phone=$user_phone,introduction=$user_introduction,location=$user_location WHERE name=$user_name");
-echo $user_phone;
