@@ -130,8 +130,8 @@ EvPNG.fix('img,.content,.svc-payment,.svc-gathering,.svc-weg,.svc-tx,.svc-credit
   <!--左侧部分-->
   <div class="left180">
     <div class="grtx">
-      <div class="grimg"><img src="../images/grzx/grtx.jpg" /></div>
-      <div class="grname"><a href="#"></a></div>
+      <div class="grimg"><img src="./user_image/$user_name.jpg" /></div>
+      <div class="grname"><a href="#">$user_name</a></div>
     </div>
     <ul class="menu1">
       <li class="on"><a onclick="return click_a('divOne_1')" style="cursor:pointer;"><em id="div_one">个人中心</em></a></li>
