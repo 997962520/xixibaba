@@ -1,3 +1,17 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: XZC
+ * Date: 2017/4/13
+ * Time: 8:49
+ */
+require_once '../database.php';
+session_start();
+if (!isset($_SESSION['user_name']))
+    echo "<script type='text/javascript'>alert('未登录，不能进入个人中心');location='../index.html';</script>";
+$user_name = $_SESSION['user_name'];
+
+$html_A = <<<HTML
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -28,37 +42,37 @@ EvPNG.fix('img,.content,.svc-payment,.svc-gathering,.svc-weg,.svc-tx,.svc-credit
           <div class="xsyd"><a href="#" target="_blank">新手引导</a></div>
           <div class="hylist">
             <ul>
-                <script>
+              <script>
                 function logout(){
-                    if (confirm("确认退出？")){
-                        top.location = "../logout.php";
-                    }
-                    return false;
+                  if (confirm("确认退出？")){
+                    top.location = "../logout.php";
+                  }
+                  return false;
                 }
-                </script>
-                <li class="li1"><a href="#" onclick="logout();">注销</a></li>
-                <!--添加进收藏夹功能-->
-                <script>
-                    function addToFavorite(sTitle,sURL)
+              </script>
+              <li class="li1"><a href="#" onclick="logout();">注销</a></li>
+              <!--添加进收藏夹功能-->
+              <script>
+                function addToFavorite(sTitle,sURL)
+                {
+                  try
+                  {
+                    window.external.addFavorite(sURL, sTitle);
+                  }
+                  catch (e)
+                  {
+                    try
                     {
-                        try
-                        {
-                            window.external.addFavorite(sURL, sTitle);
-                        }
-                        catch (e)
-                        {
-                            try
-                            {
-                                window.sidebar.addPanel(sTitle, sURL, "");
-                            }
-                            catch (e)
-                            {
-                                alert("您的浏览器不支持自动加入收藏夹，请使用Ctrl+D进行手动添加");
-                            }
-                        }
+                      window.sidebar.addPanel(sTitle, sURL, "");
                     }
-                </script>
-                <li class="li4"><a href="javascript:void(0)" onclick="addToFavorite(document.title,window.location)">收藏我们</a></li>
+                    catch (e)
+                    {
+                      alert("您的浏览器不支持自动加入收藏夹，请使用Ctrl+D进行手动添加");
+                    }
+                  }
+                }
+              </script>
+              <li class="li4"><a href="javascript:void(0)" onclick="addToFavorite(document.title,window.location)">收藏我们</a></li>
             </ul>
           </div>
 		  				  <!--注册登录隐藏--->
@@ -93,10 +107,10 @@ EvPNG.fix('img,.content,.svc-payment,.svc-gathering,.svc-weg,.svc-tx,.svc-credit
       <div class="topnavmenu">
         <div class="nav">
           <ul>
-              <li><a href="../index.html" class="on">首页</a></li>
-              <li><a href="user.php">个人中心</a></li>
-              <li><a href="../course.php">课程中心</a></li>
-              <li><a href="../community/community.php">社区中心</a></li>
+            <li><a href="../index.html" class="on">首页</a></li>
+            <li><a href="user.php">个人中心</a></li>
+            <li><a href="../course.php">课程中心</a></li>
+            <li><a href="../community/community.php">社区中心</a></li>
           </ul>
         </div>
         <div class="question">
@@ -121,16 +135,16 @@ EvPNG.fix('img,.content,.svc-payment,.svc-gathering,.svc-weg,.svc-tx,.svc-credit
     </div>
     <ul class="menu1">
       <li class="on"><a onclick="return click_a('divOne_1')" style="cursor:pointer;"><em id="div_one">个人中心</em></a></li>
-        <div class="menu1_sub" id="divOne_1" style="display:none;">
-            <p><a href="user.php" >信息完善</a></p>
-            <p><a href="user_icon.php" >修改头像</a></p>
-            <p><a href="user_security.html" >账户安全</a></p>
-        </div>
-        <div class="menubox">
-            <p><a href="user.php" >个人资料</a></p>
-            <p><a href="user_icon.php" >修改头像</a></p>
-            <p><a href="user_security.html" >账户安全</a></p>
-        </div>
+      <div class="menu1_sub" id="divOne_1" style="display:none;">
+        <p><a href="user.php" >信息完善</a></p>
+        <p><a href="user_icon.php" >修改头像</a></p>
+        <p><a href="user_security.html" >账户安全</a></p>
+      </div>
+      <div class="menubox">
+        <p><a href="user.php" >个人资料</a></p>
+        <p><a href="user_icon.php" >修改头像</a></p>
+        <p><a href="user_security.html" >账户安全</a></p>
+      </div>
     </ul>
     <script language="javascript" type="text/javascript">
         function click_a(divDisplay)
@@ -180,37 +194,37 @@ EvPNG.fix('img,.content,.svc-payment,.svc-gathering,.svc-weg,.svc-tx,.svc-credit
   </div>
  <!--右侧部分-->
  <div class="right840">
- <div class="title6"><h1><a href="user.php">信息完善</a></h1><h1><a href="user_icon.php">修改头像</a></h1><h1><a href="user_security.html" class="on">账户安全</a></h1></div>
+ <div class="title6"><h1><a href="user.php">信息完善</a></h1><h1><a href="user_icon.php" class="on">修改头像</a></h1><h1><a href="user_security.html" >账户安全</a></h1></div>
  <div class="display">
-    <table width="840" height="400" align="center" cellspacing="0" cellpadding="0" class="tab">
-        <form method="get" action="user_security.php">
-    <tr><td colspan="2"><font class="f_black">您可以修改您的账户密码。下次登录请使用新密码</font></td></tr>
-    <tr>
-        <td>&nbsp;&nbsp;&nbsp;<b>当前密码:</b></td><td>&nbsp;&nbsp;&nbsp;<input type="password" class="input1" id="old_password" name="old_password"/></td>
-    </tr>
-    <tr>
-        <td>&nbsp;&nbsp;&nbsp;<b>新密码:</b></td><td>&nbsp;&nbsp;&nbsp;<input type="password" class="input1"  id="new_password" name="new_password"/>&nbsp;&nbsp;&nbsp;<font class="f_black">6-20位，区分大小写，只能使用字母，数字</font></td>
-    </tr>
-    <tr>
-        <td>&nbsp;&nbsp;&nbsp;<b>确认新密码:</b></td><td>&nbsp;&nbsp;&nbsp;<input type="password" class="input1"  id="confirm_new_password" name="confirm_new_password"/>&nbsp;&nbsp;&nbsp;<font class="f_black">6-20位，区分大小写，只能使用字母，数字</font></td>
-    </tr>
-     <tr>
-         <td colspan="2">&nbsp;&nbsp;&nbsp;<input type="submit" value="保存密码" class="btn1" />&nbsp;&nbsp;&nbsp;<input  type="reset" value="取消" class="btn4" /></td>
-     </tr>
-            </form>
-    </table>
+    
+        <form action="./uploadimage.php" method="post" enctype="multipart/form-data">
+            <input type="file" name="photo" />
+            <input type="submit" onclick="uploadphoto()" value="上传新头像"/>
+         </form>
+    <script>
+        function uploadphoto()
+        {
+            document.getElementById("user_image").src = "./user_image/$user_name.jpg"
+         }
+        window.onload = function()
+        {
+            uploadphoto();
+        }
+    </script>
  </div>
  </div>
 </div>
 <div class="clear"></div>
 <div id="footer">
-    <div class="links">
-        <div class="copyright">
-            <div class="copy">Copyright © 2017 茜茜爸爸儿童家庭学堂课程平台</a><br />
-                <font class="f_red">当前在线人数：<b>154588</b> 人</font>
-            </div>
-        </div>
+  <div class="links">
+  <div class="copyright">
+    <div class="copy">Copyright © 2017 茜茜爸爸儿童家庭学堂课程平台</a><br />
+      <font class="f_red">当前在线人数：<b>154588</b> 人</font>
     </div>
+  </div>
+  </div>
 </div>
 </body>
 </html>
+HTML;
+echo $html_A;

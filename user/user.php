@@ -18,6 +18,8 @@ $result = $my_db->database_get("select name,email,phone,location,introduction fr
 $old_user_location = $result[0]['location'];
 $old_user_phone = $result[0]['phone'];
 $old_user_introduction = $result[0]['introduction'];
+$path = "./user_image/";
+$image_path = $path . $user_name . ".jpg";
 
 $html_A = <<<HTML
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -139,20 +141,20 @@ EvPNG.fix('img,.content,.svc-payment,.svc-gathering,.svc-weg,.svc-tx,.svc-credit
   <!--左侧部分-->
   <div class="left180">
     <div class="grtx">
-      <div class="grimg"><img src="../images/grzx/grtx.jpg" /></div>
+      <div class="grimg"><img src="./user_image/$user_name.jpg" /></div>
       <div class="grname"><a href="#">$user_name</a></div>
     </div>
     <ul class="menu1">
       <li class="on"><a onclick="return click_a('divOne_1')" style="cursor:pointer;"><em id="div_one">个人中心</em></a></li>
       <div class="menu1_sub" id="divOne_1" style="display:none;">
         <p><a href="user.php" >信息完善</a></p>
-        <p><a href="user_icon.html" >修改头像</a></p>
-        <p><a href="user_security.html" >账户安全</a></p>
+        <p><a href="user_icon.php" >修改头像</a></p>
+        <p><a href="user_security.php" >账户安全</a></p>
       </div>
       <div class="menubox">
         <p><a href="user.php" >个人资料</a></p>
-        <p><a href="user_icon.html" >修改头像</a></p>
-        <p><a href="user_security.html" >账户安全</a></p>
+        <p><a href="user_icon.php" >修改头像</a></p>
+        <p><a href="user_security.php" >账户安全</a></p>
       </div>
     </ul>
     <script language="javascript" type="text/javascript">
@@ -204,8 +206,8 @@ EvPNG.fix('img,.content,.svc-payment,.svc-gathering,.svc-weg,.svc-tx,.svc-credit
   <!--右侧部分-->
   <div class="right840">
     <div class="title6">
-      <h1><a href="user.html" class="on">信息完善</a></h1>
-      <h1><a href="user_icon.html">修改头像</a></h1>
+      <h1><a href="user.php" class="on">信息完善</a></h1>
+      <h1><a href="user_icon.php">修改头像</a></h1>
       <h1><a href="user_security.html">账户安全</a></h1>
     </div>
     <div class="display">
