@@ -16,6 +16,10 @@ $html_A = <<<HTML
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+#yl{ width:200px; height:300px; background-image:url(img/11.png); background-size:200px 300px;}
+#file{ width:200px; height:300px; float:left; opacity:0;}
+</style>
 <title>茜茜爸爸儿童家庭学堂课程中心</title>
 <link href="../css/whir_common.css" rel="stylesheet" type="text/css" />
 <link href="../css/whir_grzx.css" rel="stylesheet" type="text/css" />
@@ -199,8 +203,11 @@ EvPNG.fix('img,.content,.svc-payment,.svc-gathering,.svc-weg,.svc-tx,.svc-credit
     
         <form action="./uploadimage.php" method="post" enctype="multipart/form-data">
             <input type="file" name="photo" />
-            <input type="submit" onclick="uploadphoto()" value="上传新头像"/>
+            <input type="submit" onclick="uploadphoto()" value="上传新头像" class="btn1"/>
          </form>
+         (请使用jpg格式图片)
+HTML;
+$html_B=<<<HTML
     <script>
         function uploadphoto()
         {
@@ -228,3 +235,6 @@ EvPNG.fix('img,.content,.svc-payment,.svc-gathering,.svc-weg,.svc-tx,.svc-credit
 </html>
 HTML;
 echo $html_A;
+echo "图片预览：<br><div style='border:#F00 1px solid; width:200px;height:200px'>
+    <img src = \"./user_image/$user_name.jpg\" width=200px height=200px>"."</div>";
+echo $html_B;

@@ -39,28 +39,43 @@ class database{
 
 		switch ($table_name){
 			case 'user':
-				$this->insert_data_to_user($name,$password,$email,$phone,$location);
+				$this->insert_data_to_user($name,$password,$email,$phone,$location,$introduction);
 				break;
 			case 'course':
-				$this->insert_data_to_course($name,$time,$directory,$play_count,$image,$amount,$content);
-				break;
-			case 'class':
-				$this->insert_data_to_class($name);
-				break;
-			case 'course_class':
-				$this->insert_data_to_course_class($course_id,$class_id);
+				$this->insert_data_to_course($name,$time,$directory,$play_count,$image,$content,$approve,$disappove,$type);
 				break;
 			case 'video':
 				$this->insert_data_to_video($name);
 				break;
-			case 'class_video':
-				$this->insert_data_to_class_video($class_id,$video_id);
+			case 'pdf':
+				$this->insert_data_to_pdf($name);
+				break;
+			case 'course_video':
+				$this->insert_data_to_course_video($course_id,$video_id);
+				break;
+			case 'course_pdf':
+				$this->insert_data_to_course_pdf($course_id,$pdf_id);
 				break;
 			case 'comment':
 				$this->insert_data_to_comment($user_id,$course_id,$content,$time,$approve,$disapprove);
 				break;
 			case 'collection':
 				$this->insert_data_to_collection($course_id,$user_id);
+				break;
+			case 'history':
+				$this->insert_data_to_history($course_id,$user_id,$time);
+				break;
+			case 'schedule':
+				$this->insert_data_to_schedule($day1_1_course_id,$day1_2_course_id,$day1_3_course_id,
+					$day2_1_course_id,$day2_2_course_id,$day2_3_course_id,
+					$day3_1_course_id,$day3_2_course_id,$day3_3_course_id,
+					$day4_1_course_id,$day4_2_course_id,$day4_3_course_id,
+					$day5_1_course_id,$day5_2_course_id,$day5_3_course_id,
+					$day6_1_course_id,$day6_2_course_id,$day6_3_course_id,
+					$day7_1_course_id,$day7_2_course_id,$day7_3_course_id);
+				break;
+			case 'user_schedule':
+				$this->insert_data_to_user_schedule($schedule_id,$user_id);
 				break;
 
 		}
@@ -106,25 +121,25 @@ class database{
 		$this->connect->exec("INSERT INTO user(name,password,email,phone,location,introduction) VALUES".
 			"('$name','$password','$email','$phone','$location','$introduction')");
 	}
-	private function insert_data_to_course($name,$time,$directory,$play_count,$image,$amount,$content){
-		$this->connect->exec("INSERT INTO course(name,time,directory,play_count,image,amount,content) VALUES".
-			"('$name','$time','$directory','$play_count','$image','$amount','$content')");
-	}
-	private function insert_data_to_class($name){
-		$this->connect->exec("INSERT INTO class(name) VALUES".
-			"('$name')");
-	}
-	private function insert_data_to_course_class($course_id,$class_id){
-		$this->connect->exec("INSERT INTO course_class(course_id,class_id) VALUES".
-			"('$course_id','$class_id')");
+	private function insert_data_to_course($name,$time,$directory,$play_count,$image,$content,$approve,$disapprove,$type){
+		$this->connect->exec("INSERT INTO course(name,time,directory,play_count,image,content,approve,disapprove,type) VALUES".
+			"('$name','$time','$directory','$play_count','$image','$content'.'$approve','$disapprove','$type')");
 	}
 	private function insert_data_to_video($name){
 		$this->connect->exec("INSERT INTO video(name) VALUES".
 			"('$name')");
 	}
-	private function insert_data_to_class_video($class_id,$video_id){
-		$this->connect->exec("INSERT INTO class_video(class_id,video_id) VALUES".
-			"('$class_id','$video_id')");
+	private function insert_data_to_pdf($name){
+		$this->connect->exec("INSERT INTO pdf(name) VALUES".
+			"('$name')");
+	}
+	private function insert_data_to_course_video($course_id,$video_id){
+		$this->connect->exec("INSERT INTO course_video(course_id,video_id) VALUES".
+			"('$course_id','$video_id')");
+	}
+	private function insert_data_to_course_pdf($course_id,$pdf_id){
+		$this->connect->exec("INSERT INTO course_pdf(course_id,pdf_id) VALUES".
+			"('$course_id','$pdf_id')");
 	}
 	private function insert_data_to_comment($user_id,$course_id,$content,$time,$approve,$disapprove){
 		$this->connect->exec("INSERT INTO comment(user_id,course_id,content,time,approve,disapprove) VALUES".
@@ -133,6 +148,24 @@ class database{
 	private function insert_data_to_collection($course_id,$user_id){
 		$this->connect->exec("INSERT INTO collection(course_id,user_id) VALUES".
 			"('$course_id','$user_id')");
+	}
+	private function insert_data_to_history($course_id,$user_id,$time){
+		$this->connect->exec("INSERT INTO history(course_id,user_id,time) VALUES".
+			"('$course_id','$user_id','$time')");
+	}
+	private function insert_data_to_schedule($day1_1_course_id,$day1_2_course_id,$day1_3_course_id,
+					$day2_1_course_id,$day2_2_course_id,$day2_3_course_id,
+					$day3_1_course_id,$day3_2_course_id,$day3_3_course_id,
+					$day4_1_course_id,$day4_2_course_id,$day4_3_course_id,
+					$day5_1_course_id,$day5_2_course_id,$day5_3_course_id,
+					$day6_1_course_id,$day6_2_course_id,$day6_3_course_id,
+					$day7_1_course_id,$day7_2_course_id,$day7_3_course_id){
+		$this->connect->exec("INSERT INTO schedule(day1_1_course_id,day1_2_course_id,day1_3_course_id,day2_1_course_id,day2_2_course_id,day2_3_course_id,day3_1_course_id,day3_2_course_id,day3_3_course_id,day4_1_course_id,day4_2_course_id,day4_3_course_id,day5_1_course_id,day5_2_course_id,day5_3_course_id,day6_1_course_id,day6_2_course_id,day6_3_course_id,day7_1_course_id,day7_2_course_id,day7_3_course_id) VALUES".
+			"($day1_1_course_id','$day1_2_course_id','$day1_3_course_id','$day2_1_course_id','$day2_2_course_id','$day2_3_course_id','$day3_1_course_id','$day3_2_course_id','$day3_3_course_id','$day4_1_course_id','$day4_2_course_id','$day4_3_course_id','$day5_1_course_id','$day5_2_course_id','$day5_3_course_id','$day6_1_course_id','$day6_2_course_id','$day6_3_course_id','$day7_1_course_id','$day7_2_course_id','$day7_3_course_id')");
+	}
+	private function insert_data_to_user_schedule($schedule_id,$user_id){
+		$this->connect->exec("INSERT INTO user_schedule(schedule_id,user_id) VALUES".
+			"('$schedule_id','$user_id')");
 	}
 }
 
