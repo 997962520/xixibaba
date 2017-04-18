@@ -108,6 +108,18 @@
 <div class="clear"></div>
 <!--container-->
 <div id="container">
+    <?php
+    $link = mysqli_connect("localhost", "root", "123456", "xixibaba");
+    if(! isset($_SESSION['search']) || ! $_GET)
+    $_SESSION['search'] = array();
+    $_SESSION['search'] = array_merge($_SESSION['search'], $_GET);
+    $aaa=join(' - ', $_SESSION['search']);
+    $sql = "SELECT * FROM `communities` WHERE `location` LIKE '$aaa'";
+    $query =mysqli_query($link,$sql);
+    ?>
+    <div class="title7">
+        <h1><?php echo $aaa;?>社区</h1>
+    </div>
     <div class="kssearch">
         <div class="address">
             <h1>按地区</h1>
@@ -133,20 +145,14 @@
                 <a href="communitySearch.php?location=山东">山东</a>
                 <a href="communitySearch.php?location=山西">山西</a>
                 <a href="communitySearch.php?location=云南">云南</a></h2>
+<!--            <script>-->
+<!--function changeCSS() {-->
+<!--    document.getElementById("1").innerHTML="beijing";-->
+<!--}-->
+<!--            </script>-->
         </div>
     </div>
-    <?php
-         $link = mysqli_connect("localhost", "root", "123456", "xixibaba");
-    if(! isset($_SESSION['search']) || ! $_GET)
-    $_SESSION['search'] = array();
-    $_SESSION['search'] = array_merge($_SESSION['search'], $_GET);
-    $aaa=join(' - ', $_SESSION['search']);
-    $sql = "SELECT * FROM `communities` WHERE `location` LIKE '$aaa'";
-    $query =mysqli_query($link,$sql);
-    ?>
-    <div class="title7">
-        <h1><?php echo $aaa;?>社区</h1>
-    </div>
+
     <div class="splist">
         <?php
         while($rs=mysqli_fetch_array($query,MYSQLI_BOTH)) {
@@ -181,13 +187,13 @@
                         <tr>
                             <td valign=top  id=marquePic1><table width='100%' border='0' cellspacing='0'>
                                     <tr>
-                                        <td align=center><a href="#" target="_blank"><img src="../images/link1.jpg" /></a></td>
-                                        <td align=center><a href="#" target="_blank"><img src="../images/link2.jpg" /></a></td>
-                                        <td align=center><a href="#" target="_blank"><img src="../images/link3.jpg" /></a></td>
-                                        <td align=center><a href="#" target="_blank"><img src="../images/link4.jpg" /></a></td>
-                                        <td align=center><a href="#" target="_blank"><img src="../images/link5.jpg" /></a></td>
-                                        <td align=center><a href="#" target="_blank"><img src="../images/link6.jpg" /></a></td>
-                                        <td align=center><a href="#" target="_blank"><img src="../images/link7.jpg" /></a></td>
+                                        <td align=center><a href="http://class.hujiang.com" target="_blank"><img src="../images/link1.jpg" /></a></td>
+                                        <td align=center><a href="http://www.haixue.com" target="_blank"><img src="../images/link2.jpg" /></a></td>
+                                        <td align=center><a href="http://www.tianxiawangxiao.com" target="_blank"><img src="../images/link3.jpg" /></a></td>
+                                        <td align=center><a href="http://www.jibeiyun.com" target="_blank"><img src="../images/link4.jpg" /></a></td>
+                                        <td align=center><a href="http://www.zgjhjy.com" target="_blank"><img src="../images/link5.jpg" /></a></td>
+                                        <td align=center><a href="http://www.duia.com" target="_blank"><img src="../images/link6.jpg" /></a></td>
+                                        <td align=center><a href="http://www.wangxiao.cn" target="_blank"><img src="../images/link7.jpg" /></a></td>
                                     </tr>
                                 </table></td>
                             <td id=marquePic2 valign=top></td>
@@ -210,16 +216,10 @@
                 </script>
             </div>
         </div>
-        <div class="clear"></div>
-        <!--合作伙伴-->
-        <div class="linktext">
-            <h1>合作伙伴</h1>
-            <div class="textlink"><a href="#" target="_blank">毒霸网址大全</a> | <a href="#" target="_blank">搜狗网址导航</a> |<a href="#" target="_blank"> 2345影视</a> | <a href="#" target="_blank">hao123</a> | <a href="#" target="_blank">搜狗搜索</a> |<a href="#" target="_blank"> 搜库</a> | <a href="#" target="_blank">必应</a> | <a href="#" target="_blank">豆瓣</a> | <a href="#" target="_blank">易迅网</a> |<a href="#" target="_blank"> 猫扑</a> | <a href="#" target="_blank">百度贴吧</a> |<a href="#" target="_blank"> 新浪微博</a> |<a href="#" target="_blank"> 果壳网</a> | <a href="#" target="_blank">人民数字</a> | <a href="#" target="_blank">114啦影视</a> | <a href="#" target="_blank">太平洋时尚网</a> | <a href="#" target="_blank">健康卫视</a> | <a href="#" target="_blank">海报网</a> | <a href="#" target="_blank">电影网</a> | <a href="#" target="_blank">178游戏网</a> | <a href="#" target="_blank">刷机精灵</a> | <a href="#" target="_blank">智能电视网</a> | <a href="#" target="_blank">奇珀市场</a> | <a href="#" target="_blank">电视家</a></div>
-        </div>
     </div>
+    <div class="clear"></div>
     <div class="copyright">
-        <div class="copy">Copyright © 2017 茜茜爸爸儿童家庭学堂课程平台</a><br />
-            <font class="f_red">当前在线人数：<b>154588</b> 人</font></div>
+        <div class="copy">Copyright © 2017 茜茜爸爸儿童家庭学堂课程平台</a><br /></div>
     </div>
 </div>
 </body>

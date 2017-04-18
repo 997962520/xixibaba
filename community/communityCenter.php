@@ -91,7 +91,7 @@
                     <ul>
                         <li><a href="../index.html">首页</a></li>
                         <li><a href="../user/user.html">个人中心</a></li>
-                        <li><a href="../course.php">课程中心</a></li>
+                        <li><a href="../course/course.php">课程中心</a></li>
                         <li><a href="communityCenter.php" class="on">社区中心</a></li>
                     </ul>
                 </div>

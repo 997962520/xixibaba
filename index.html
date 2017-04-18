@@ -39,17 +39,21 @@ EvPNG.fix('img,.content,.svc-payment,.svc-gathering,.svc-weg,.svc-tx,.svc-credit
 <div class="pop_body">
 <h1>用户注册</h1>
 <div class="zhuce">
-  <form method="get" action="register.php">
+  <form method="get" action="register.php" name="form1">
     <input type="text" class="inputl" id="register_email" name="register_email" value="请输入真实邮箱" onFocus="this.value='';" onBlur="if(this.value==''){this.value='请输入真实邮箱';}" />
     <input type="text" class="inputr" id="register_username" name="register_username" value="请输入用户名" onFocus="this.value='';" onBlur="if(this.value==''){this.value='请输入用户名';}" />
     <input type="password" class="inputb" id="register__password" name="register_password"value="请输入密码" onFocus="this.value='';" onBlur="if(this.value==''){this.value='请输入密码';}" />
-    <div class="dlk" style="margin:0 auto;width:35px;"><input type="submit" value="注册" ></div>
+    <div class="dlk"><a href="#" class="regist" onclick="submit()">注册</a><a href="index.html" class="login">返回登录</a></div>
   </form>
 </div>
 </div>
 </div> </div></div>
 
-
+<script>
+  function submit() {
+    document.form1.submit();
+  }
+  </script>
 <!--快捷导航-->
 <div class="kjnav">
 <ul>
@@ -100,7 +104,7 @@ EvPNG.fix('img,.content,.svc-payment,.svc-gathering,.svc-weg,.svc-tx,.svc-credit
           <ul>
             <li><a href="index.html" class="on">首页</a></li>
             <li><a href="user/user.php">个人中心</a></li>
-            <li><a href="course.php">课程中心</a></li>
+            <li><a href="search_course.php">课程中心</a></li>
             <li><a href="community/community.php">社区中心</a></li>
           </ul>
         </div>

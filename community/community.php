@@ -12,7 +12,10 @@
     <![endif]-->
 </head>
 <body>
-<!--头部-->
+<?php
+session_start();
+?>
+<!--header-->
 <div id="header">
     <div class="top">
         <div class="topmain">
@@ -110,21 +113,40 @@
     <div class="banner"><img src="../images/grzx/grbg.jpg" /></div>
     <?php
     $link = mysqli_connect("localhost", "root", "123456", "xixibaba");
-    if(!empty($_GET['id'])) {
-        $sql = "SELECT * FROM `communities` WHERE `id` = '".$_GET['id']."'";
-        $query = mysqli_query($link, $sql);
+        $selectCommunity = "SELECT * FROM `communities` WHERE `id` = '".$_GET['id']."'";
+        $query = mysqli_query($link, $selectCommunity);
         $rs = mysqli_fetch_array($query, MYSQLI_BOTH);
         $img = "../images/comImg/" . $rs['cover_image_url'];
-    }
     ?>
     <!--社区信息-->
     <div class="grinfo">
-        <div class="grphoto"><a href="communityManage.php?id=<?php echo $rs['id'] ?>"><img src="<?php echo $img; ?>"/></a></div>
+        <div class="grphoto"><a href="communityManage.php?id=<?php echo $rs['id'] ?>"><img src="<?php echo $img ?>"/></a></div>
         <div class="grxx">
             <div class="name"> <span class="grname"><?php echo $rs['name']?></span></div>
             <div class="grjj"><?php echo $rs['description']?></div>
             <div class="visit">
-                <span class="jrbj"><a href="#">加入社区</a></span>
+    <?php
+    $user_name =$_SESSION['user_name'];
+    $selectUser = "SELECT * FROM `user` WHERE `name` = '$user_name'";
+    $query2 =mysqli_query($link,$selectUser);
+    $rs2=mysqli_fetch_array($query2,MYSQLI_BOTH);
+    $user_id=$rs2['id'];
+    $selectCommunity_members = "SELECT * FROM `community_members` WHERE `community_id` = '".$_GET['id']."' AND `account_id` = '$user_id'";
+    $query3 = mysqli_query($link, $selectCommunity_members);
+    $rs3 = mysqli_fetch_array($query3, MYSQLI_BOTH);
+    $HTMLA = <<<HTML
+    <span class="jrbj"><a href="#">加入社区</a></span>
+HTML;
+    $HTMLB = <<<HTML
+    <span class="jrbj"><a href="#">已加入</a></span>
+HTML;
+    if(!$rs3){
+        echo $HTMLA;
+    }
+    else{
+        echo $HTMLB;
+    }
+    ?>
                 <span class="guanzhu"><a href="#">关注</a></span>
                 <span class="glpt"><a href="communityManage.php?id=<?php echo $rs['id'] ?>">管理平台</a></span>
             </div>
@@ -255,36 +277,29 @@
             </div>
             <div class="clear"></div>
             <!--社区成员-->
+            <?php
+            $sqid=$_GET['id'];
+            $sql2 = "SELECT * FROM `community_members` WHERE `community_id` = '$sqid'";
+            $query2 = mysqli_query($link, $sql2);
+            ?>
             <div class="cjclass">
                 <div class="title3">
                     <h1>社区成员</h1>
                 </div>
+                <?php
+                while($rs2 = mysqli_fetch_array($query2, MYSQLI_BOTH)){
+                    $yhid=$rs2['account_id'];
+                    $sql3 = "SELECT * FROM `user` WHERE `id` = '$yhid'";
+                    $query3 = mysqli_query($link, $sql3);
+                    $rs3 = mysqli_fetch_array($query3, MYSQLI_BOTH);
+                    $img2 = "../images/userImg/" . $rs3['image'];
+                    ?>
                 <ul>
-                    <li> <a href="#"><img src="../../bishe/images/grzx/lytx.jpg" />情为何物</a> </li>
-                    <li> <a href="#"><img src="../../bishe/images/grzx/lytx.jpg" />情为何物</a> </li>
-                    <li> <a href="#"><img src="../../bishe/images/grzx/lytx.jpg" />情为何物</a> </li>
-                    <li> <a href="#"><img src="../../bishe/images/grzx/lytx.jpg" />情为何物</a> </li>
-                    <li> <a href="#"><img src="../../bishe/images/grzx/lytx.jpg" />情为何物</a> </li>
-                    <li> <a href="#"><img src="../../bishe/images/grzx/lytx.jpg" />情为何物</a> </li>
-                    <li> <a href="#"><img src="../../bishe/images/grzx/lytx.jpg" />情为何物</a> </li>
-                    <li> <a href="#"><img src="../../bishe/images/grzx/lytx.jpg" />情为何物</a> </li>
-                    <li> <a href="#"><img src="../../bishe/images/grzx/lytx.jpg" />情为何物</a> </li>
-                    <li> <a href="#"><img src="../../bishe/images/grzx/lytx.jpg" />情为何物</a> </li>
-                    <li> <a href="#"><img src="../../bishe/images/grzx/lytx.jpg" />情为何物</a> </li>
-                    <li> <a href="#"><img src="../../bishe/images/grzx/lytx.jpg" />情为何物</a> </li>
-                    <li> <a href="#"><img src="../../bishe/images/grzx/lytx.jpg" />情为何物</a> </li>
-                    <li> <a href="#"><img src="../../bishe/images/grzx/lytx.jpg" />情为何物</a> </li>
-                    <li> <a href="#"><img src="../../bishe/images/grzx/lytx.jpg" />情为何物</a> </li>
-                    <li> <a href="#"><img src="../../bishe/images/grzx/lytx.jpg" />情为何物</a> </li>
-                    <li> <a href="#"><img src="../../bishe/images/grzx/lytx.jpg" />情为何物</a> </li>
-                    <li> <a href="#"><img src="../../bishe/images/grzx/lytx.jpg" />情为何物</a> </li>
-                    <li> <a href="#"><img src="../../bishe/images/grzx/lytx.jpg" />情为何物</a> </li>
-                    <li> <a href="#"><img src="../../bishe/images/grzx/lytx.jpg" />情为何物</a> </li>
-                    <li> <a href="#"><img src="../../bishe/images/grzx/lytx.jpg" />情为何物</a> </li>
-                    <li> <a href="#"><img src="../../bishe/images/grzx/lytx.jpg" />情为何物</a> </li>
-                    <li> <a href="#"><img src="../../bishe/images/grzx/lytx.jpg" />情为何物</a> </li>
-                    <li> <a href="#"><img src="../../bishe/images/grzx/lytx.jpg" />情为何物</a> </li>
+                    <li> <a href="../user/user.php?id=<?php $rs3['id'];  ?>"><img class="image1" src="<?php echo $img2 ?>" /><?php echo $rs3['name']; ?></a> </li>
                 </ul>
+                <?php
+                }
+                ?>
             </div>
         </div>
         <div class="right295">
@@ -292,7 +307,7 @@
                 <h1>社区公告</h1>
             </div>
             <div class="classnotice">
-                <div class="noticetext"><?php echo $rs['notice'] ?>.</div>
+                <div class="communitynotice"><?php echo $rs['notice'] ?></div>
                 <div class="teacher">
                     <div class="teacimg"><img src="../../bishe/images/class/pic.jpg" /></div>
                     <div class="teacherinfo">
@@ -332,44 +347,52 @@
             </ul>
             <!--社区讨论-->
             <div class="title4">
-                <h1>社区讨论</h1>
+                <h1>社区讨论</h1><a href="communityDebate.php?id=<?php echo $sqid ?>" class="more">更多&gt;</a>
             </div>
             <div class="xqlist">
                 <ul>
-                    <li>
-                        <div class="xqtx"><img src="../../bishe/images/grzx/lytx.jpg" /></div>
-                        <div class="xqnr">
-                            <div class="title5">
-                                <h2><a href="#">t物</a></h2>
-                                <span>5小时前</span></div>
-                            <div class="xyzs">完善宪法、依法治国，不让党内的腐败份子有空可钻，保障群众的合法利益……</div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="xqtx"><img src="../../bishe/images/grzx/lytx.jpg" /></div>
-                        <div class="xqnr">
-                            <div class="title5">
-                                <h2><a href="#">王老师</a></h2>
-                                <span>5小时前</span></div>
-                            <div class="xyzs">完善宪法、依法治国，不让党内的腐败份子有空可钻，保障群众的合法利益……</div>
-                        </div>
-                    </li>
+                    <?php
+                    $sql4 = "SELECT * FROM `tweets`";
+                    $query4 = mysqli_query($link, $sql4);
+                    $i=1;
+                    while(($rs4 = mysqli_fetch_array($query4, MYSQLI_BOTH))&&($i<=2)) {
+                        $yhid2 = $rs4['account_id'];
+                        $sql5 = "SELECT * FROM `user` WHERE `id`='$yhid2'";
+                        $query5 = mysqli_query($link, $sql5);
+                        $rs5 = mysqli_fetch_array($query5, MYSQLI_BOTH);
+                        $i++;
+                        ?>
+                        <li>
+                            <div class="xqtx"><img class="image1" src="<?php echo $img2 ?>"/></div>
+                            <div class="xqnr">
+                                <div class="title5">
+                                    <h2><a href="#"><?php echo $rs5['id']; ?></a></h2>
+                                    <span>5小时前</span></div>
+                                <div class="xyzs"><?php echo $rs4['content']; ?></div>
+                            </div>
+                        </li>
+                        <?php
+                    }
+                    ?>
                 </ul>
             </div>
             <!--讨论版-->
+            <form action="tweets_delete.php?id=<?php echo $_GET['id'] ?>" method="post">
             <div class="title4">
                 <h1>讨论版</h1>
             </div>
             <div class="team_l">
-                <textarea name="" cols="48" rows="10" class="input2" value="说点什么吧..."></textarea>
+                <textarea name="content" cols="48" rows="10" class="input2" value="说点什么吧..."></textarea>
                 <br />
                 <div class="biaoqing"><img src="../../bishe/images/grzx/bq.jpg" /><a href="#">添加表情</a></div>
-                <input type="submit" name="Submit" class="btn3" value="确定发布">
+                <input type="submit" name="submit" class="btn3" value="确定发布">
             </div>
+            </form>
         </div>
     </div>
 </div>
 <div class="clear"></div>
+<!--footer-->
 <div id="footer">
     <div class="links">
         <div class="linkpic">
