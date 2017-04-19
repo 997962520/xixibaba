@@ -109,7 +109,7 @@ $html_A = <<<HTML
             <div class="topnavmenu">
                 <div class="nav">
                     <ul>
-                        <li><a href="index.html" class="on">首页</a></li>
+                        <li><a href="index.php" class="on">首页</a></li>
                         <li><a href="user/user.php">个人中心</a></li>
                         <li><a href="search_course.php">课程中心</a></li>
                         <li><a href="community/community.php">社区中心</a></li>
@@ -189,7 +189,7 @@ for ($i = 0; $i < $count; $i++) {
                 <h3><a href=./course/course.php?course_id=$course_id>$course_name ...</a></h3>
                 <span class="play1"><a href=./course/course.php?course_id=$course_id title="播放">播放</a></span><span class="time">$course_time</span></div>
             <div class="title3">
-                <div class="jiage"><a href=./course/course.php?course_id=$course_id>$course_approve_rate %好评"</a></div>
+                <div class="jiage"><a href=./course/course.php?course_id=$course_id>$course_approve_rate %好评</a></div>
                 <div class="playtime"><a href=./course/course.php?course_id=$course_id>$course_play_count 次播放"</a> | <a href="#">$course_approve 个好评"</a></div>
             </div>
     </div>

@@ -9,4 +9,4 @@ session_start();
 unset($_SESSION['user_name']);
 unset($_SESSION['class_id']);
 session_unset();
-echo "<script type='text/javascript'>location = 'index.html'</script>";
+echo "<script type='text/javascript'>location = 'index.php'</script>";

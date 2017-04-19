@@ -7,9 +7,11 @@
  */
 session_start();
 require_once '../database.php';
-$username = $_SESSION['user_name'];
+@$username = $_SESSION['user_name'];
 $my_db = new database();
 $course_id = $_GET['course_id'];
+$result_user = $my_db->database_get("select id from user where name='$username'");
+@$user_id = $result_user[0]['id'];
 $result = $my_db->database_get("select * from course where id='$course_id'");
 $course_name = $result[0]['name'];
 $course_time = $result[0]['time'];
@@ -17,6 +19,10 @@ $course_play_count = $result[0]['play_count'];
 $course_content = $result[0]['content'];
 $course_approve = $result[0]['approve'];
 $course_disapprove = $result[0]['disapprove'];
+$course_type=$result[0]['type'];
+$result_relative_course=$my_db->database_get("select * from course where type = '$course_type'");
+$count_relative_course=count($result_relative_course);
+
 
 $html_A = <<<HTML
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
@@ -108,7 +114,7 @@ $html_A = <<<HTML
             <div class="topnavmenu">
                 <div class="nav">
                     <ul>
-                        <li><a href="../index.html" class="on">首页</a></li>
+                        <li><a href="../index.php" class="on">首页</a></li>
                         <li><a href="../user/user.php">个人中心</a></li>
                         <li><a href="../search_course.php">课程中心</a></li>
                         <li><a href="../community/community.php">社区中心</a></li>
@@ -126,17 +132,14 @@ $html_A = <<<HTML
 <div class="clear"></div>
 <!--container-->
 <div class="player_container">
-    <div class="mod_crumbs"><a href="#" target="_blank" title="首页">首页</a>&gt; <a href="javascript:;" target="_blank" title="课程中心">课程中心</a></div>
+    <div class="mod_crumbs"><a href="../index.php" target="_blank" title="首页">首页</a>&gt; <a href="javascript:;" target="_blank" title="课程中心">课程中心</a></div>
     <h1 class="mod_player_title" title="大学时代">$course_name</h1>
     <!--视频播放及相关视频-->
     <div class="mod_player_section cf" id="mod_inner">
         <div class="mod_player" id="mod_player">
-        <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,29,0" width="500" height="400">
-            <param name="movie" value="flvplayer.swf" />
-            <param name="quality" value="high" />
-            <param name="allowFullScreen" value="true" />
-            <embed src="flvplayer.swf" allowfullscreen="true" flashvars="vcastr_file=./$course_id/$course_id.flv&IsAutoPlay=1" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" width="850" height="520"></embed>
-        </object>   
+        <script src="../script/flowplayer-3.2.11.min.js" type="text/javascript"></script>
+            <div id="my52player" style="width: 856px; height: 520px;">    </div>
+            <script>flowplayer("my52player", "flowplayer-3.2.12.swf", { clip: { url: "../course/$course_id/$course_id.flv", autoPlay: true, autoBuffering: true} });</script>  
         </div>
         <div class="mod_video_album_section mod_video_album_section_v3" id="fullplaylist">
             <div class="mod_video_list_section ui_scroll_box mod_video_list_section_2">
@@ -145,61 +148,16 @@ $html_A = <<<HTML
                         <h1>相关课程</h1>
                     </div>
                     <ul>
-                        <li class="item"><a class="item_link" href="#" title="台妹为何不嫁大陆男"> <span class="album_pic"> <img
-                                width="117px" height="65px" src="../images/playimg.jpg" alt="台妹为何不嫁大陆男"> <span
-                                class="figure_mask"> <em class="mask_txt">01:06</em> </span> </span>
-                            <div class="video_title"><strong>台妹为何不嫁大陆男</strong><br/>
-                                播放：12556次<br/>
-                                评论：1554次
-</div>
-                        </a></li>
-                        <li class="item"><a class="item_link" href="#" title="台妹为何不嫁大陆男"> <span class="album_pic"> <img
-                                width="117px" height="65px" src="../images/playimg.jpg" alt="台妹为何不嫁大陆男"> <span
-                                class="figure_mask"> <em class="mask_txt">01:06</em> </span> </span>
-                            <div class="video_title"><strong>台妹为何不嫁大陆男</strong><br/>
-                                播放：12556次<br/>
-                                评论：1554次
-</div>
-                        </a></li>
-                        <li class="item"><a class="item_link" href="#" title="台妹为何不嫁大陆男"> <span class="album_pic"> <img
-                                width="117px" height="65px" src="../images/playimg.jpg" alt="台妹为何不嫁大陆男"> <span
-                                class="figure_mask"> <em class="mask_txt">01:06</em> </span> </span>
-                            <div class="video_title"><strong>台妹为何不嫁大陆男</strong><br/>
-                                播放：12556次<br/>
-                                评论：1554次
-</div>
-                        </a></li>
-                        <li class="item"><a class="item_link" href="#" title="台妹为何不嫁大陆男"> <span class="album_pic"> <img
-                                width="117px" height="65px" src="../images/playimg.jpg" alt="台妹为何不嫁大陆男"> <span
-                                class="figure_mask"> <em class="mask_txt">01:06</em> </span> </span>
-                            <div class="video_title"><strong>台妹为何不嫁大陆男</strong><br/>
-                                播放：12556次<br/>
-                                评论：1554次
-</div>
-                        </a></li>
-                        <li class="item"><a class="item_link" href="#" title="台妹为何不嫁大陆男"> <span class="album_pic"> <img
-                                width="117px" height="65px" src="../images/playimg.jpg" alt="台妹为何不嫁大陆男"> <span
-                                class="figure_mask"> <em class="mask_txt">01:06</em> </span> </span>
-                            <div class="video_title"><strong>台妹为何不嫁大陆男</strong><br/>
-                                播放：12556次<br/>
-                                评论：1554次
-</div>
-                        </a></li>
-                        <li class="item"><a class="item_link" href="#" title="台妹为何不嫁大陆男"> <span class="album_pic"> <img
-                                width="117px" height="65px" src="../images/playimg.jpg" alt="台妹为何不嫁大陆男"> <span
-                                class="figure_mask"> <em class="mask_txt">01:06</em> </span> </span>
-                            <div class="video_title"><strong>台妹为何不嫁大陆男</strong><br/>
-                                播放：12556次<br/>
-                                评论：1554次
-</div>
-                        </a></li>
+                    
+HTML;
+$html_B = <<<HTML
                     </ul>
                 </div>
             </div>
         </div>
     </div>
     <!--点赞-->
-    <div class="agree"><span class="dzsc"><a href="#" class="dianz">80</a><a href="#" class="kdsc">收藏</a></span> <span
+    <div class="agree"><span class="dzsc"><a href="#" class="dianz">$course_approve</a><a href="course_collect.php?course_id=$course_id" class="kdsc">收藏</a></span> <span
             class="fenx">
     <div class="bshare-custom icon-medium">
       <div class="bsPromo bsPromo2"></div>
@@ -208,7 +166,7 @@ $html_A = <<<HTML
     <script type="text/javascript" charset="utf-8"
             src="http://static.bshare.cn/b/buttonLite.js#style=-1&amp;uuid=&amp;pophcol=2&amp;lang=zh"></script>
     <script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/bshareC0.js"></script>
-    </span> <span class="cishu"><img src="../images/gkcs.jpg"/>&nbsp;&nbsp;4.245播放</span> <span
+    </span> <span class="cishu"><img src="../images/gkcs.jpg"/>&nbsp;&nbsp;$course_play_count 次播放</span> <span
             style="float:right; margin-top:30px;">
     </span></div>
     <!--视频简介-->
@@ -236,18 +194,17 @@ $course_content</p>
         <div class="left868">
             <!--留言板-->
             <div class="fbpl">
-                <div class="plr"><span class="pltx"><a href="#"><img src="../images/upname.jpg" width="61" height="61"/></a></span><span class="plname"><a
-                        href="#">Star_moon66250919</a></span><span class="plnum">所有评论<a href="#"> 21</a></span></div>
-                <div class="zishu">0/300</div>
+                <div class="plr"><span class="pltx"><a href="#"><img src="../user/user_image/$username.jpg" width="61" height="61"/></a></span><span class="plname"><a
+                        href="#">$username</a></span><span class="plnum">所有评论<a href="#"> 21</a></span></div>
                 <textarea name="textarea" class="input4"></textarea>
-                <input type="image" src="../images/fbpl.jpg" style="margin-left:25px;"/>
+                <input type="image" src="../images/fbpl.jpg" style="margin-left:25px;"/> 
             </div>
             <!--留言列表-->
             <div class="lylist">
                 <div class="title1">
                     <h1>全部评论（21）</h1>
                     <div class="plpage">
-                        <div class="page1"><span class="num"><font class="f_blue">1</font>/41</span><span class="prev">上一页</span><span
+                        <div class="page1"><span class="num"><font class="f_blue">1</font>/1</span><span class="prev">上一页</span><span
                                 class="next"><a href="#">下一页</a></span></div>
                     </div>
                 </div>
@@ -350,5 +307,25 @@ $course_content</p>
 </html>
 HTML;
 echo $html_A;
+for($i=0;$i<$count_relative_course;$i++)
+{
+    $relative_course_id=$result_relative_course[$i]["id"];
+    $relative_course_name=$result_relative_course[$i]["name"];
+    $relative_course_play_count=$result_relative_course[$i]["play_count"];
+    $relative_course_approve=$result_relative_course[$i]["approve"];
+    $html_relative_course=<<<HTML
+    <li class="item"><a class="item_link" href="course.php?course_id=$relative_course_id" title="$relative_course_name"> 
+        <span class="album_pic"> 
+            <img width="117px" height="65px" src="../course/$relative_course_id/$relative_course_id.jpg" alt="$relative_course_name"> </span>
+            <div class="video_title"><strong>$relative_course_name</strong><br/>
+                   播放：$relative_course_play_count 次<br/>
+                   好评：$relative_course_approve 次
+            </div>
+            </a>
+    </li>
+HTML;
+    echo $html_relative_course;
+}
+echo $html_B;
 ?>
 

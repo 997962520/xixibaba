@@ -8,11 +8,11 @@ $password = $_GET['password'];
 $my_db=new database();
 if($username == "")
 {
-    echo"<script type='text/javascript'>alert('请输入用户名');location='index.html';</script>";
+    echo"<script type='text/javascript'>alert('请输入用户名');location='index.php';</script>";
 }
 elseif($password == "")
 {
-    echo"<script type='text/javascript'>alert('请填写密码');location='index.html';</script>";
+    echo"<script type='text/javascript'>alert('请填写密码');location='index.php';</script>";
 }
 
 $result = $my_db->database_get("select name from user where name='$username'and password='$password'");
@@ -31,7 +31,7 @@ if(count($result)!=0) //用户名密码输入正确 登陆成功
 }
 else//用户名或密码错误
 {
-    echo "<script type='text/javascript'>alert('用户名或密码错误');location='index.html';</script>";
+    echo "<script type='text/javascript'>alert('用户名或密码错误');location='index.php';</script>";
 }
 
 ?>

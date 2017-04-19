@@ -9,7 +9,7 @@ session_start();
 
 
 if (!isset($_SESSION['user_name']))
-    echo "<script type='text/javascript'>alert('未登录，不能进入个人中心');location='../index.html';</script>";
+    echo "<script type='text/javascript'>alert('未登录，不能进入个人中心');location='../index.php';</script>";
 
 require_once '../database.php';
 $user_name = $_SESSION['user_name'];
@@ -120,7 +120,7 @@ EvPNG.fix('img,.content,.svc-payment,.svc-gathering,.svc-weg,.svc-tx,.svc-credit
       <div class="topnavmenu">
         <div class="nav">
           <ul>
-            <li><a href="../index.html" class="on">首页</a></li>
+            <li><a href="../index.php" class="on">首页</a></li>
             <li><a href="user.php">个人中心</a></li>
             <li><a href="../search_course.php">课程中心</a></li>
             <li><a href="../community/community.php">社区中心</a></li>
