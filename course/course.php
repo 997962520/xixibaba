@@ -19,10 +19,12 @@ $course_play_count = $result[0]['play_count'];
 $course_content = $result[0]['content'];
 $course_approve = $result[0]['approve'];
 $course_disapprove = $result[0]['disapprove'];
-$course_type=$result[0]['type'];
-$result_relative_course=$my_db->database_get("select * from course where type = '$course_type'");
-$count_relative_course=count($result_relative_course);
+$course_type = $result[0]['type'];
+$result_relative_course = $my_db->database_get("select * from course where type = '$course_type'");
+$count_relative_course = count($result_relative_course);
 
+@$result_comment = $my_db->database_get("select * from comment where course_id='$course_id'");
+$count_comment = count($result_comment);
 
 $html_A = <<<HTML
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
@@ -33,6 +35,8 @@ $html_A = <<<HTML
     <title>茜茜爸爸儿童家庭学堂课程中心</title>
     <link href="../css/whir_common.css" rel="stylesheet" type="text/css"/>
     <link href="../css/whir_style.css" rel="stylesheet" type="text/css"/>
+    <link href="../css/approve_disapprove.css" rel="stylesheet" type="text/css"/>
+    
     <!--[if IE 6]>
     <script type="text/javascript" src="../script/iepng.js"></script>
     <script type="text/javascript">
@@ -174,8 +178,8 @@ $html_B = <<<HTML
         <ul>
             <li>
                 <div class="upname">
-                    <div class="upnameimg"><img src="../images/upname.jpg" width="61" height="60"/></div>
-                    <div class="upnamet">昵称:<a href="#">拍客现场</a><br/>
+                    <div class="upnameimg"><img src="../user/user_image/997962520.jpg" width="61" height="60"/></div>
+                    <div class="upnamet">昵称:<a href="#">997962520</a><br/>
                         <img src="../images/xbg.jpg"/></div>
                 </div>
                 <div class="upinfo">
@@ -194,99 +198,27 @@ $course_content</p>
         <div class="left868">
             <!--留言板-->
             <div class="fbpl">
-                <div class="plr"><span class="pltx"><a href="#"><img src="../user/user_image/$username.jpg" width="61" height="61"/></a></span><span class="plname"><a
-                        href="#">$username</a></span><span class="plnum">所有评论<a href="#"> 21</a></span></div>
-                <textarea name="textarea" class="input4"></textarea>
-                <input type="image" src="../images/fbpl.jpg" style="margin-left:25px;"/> 
+                <div class="plr"><span class="pltx"><img src="../user/user_image/$username.jpg" width="61" height="61"/></a></span><span class="plname">
+                $username</a></span><span class="plnum">所有评论 $count_comment</span></div>
+                <form action="course_comment.php?course_id=$course_id" method="post" name="form1"> 
+                <textarea name="comment_content" class="input4"></textarea>
+                <input type="image" src="../images/fbpl.jpg"  style="margin-left:25px;"/>
+                </form>
             </div>
             <!--留言列表-->
             <div class="lylist">
                 <div class="title1">
-                    <h1>全部评论（21）</h1>
+                    <h1>全部评论 </h1>
                     <div class="plpage">
                         <div class="page1"><span class="num"><font class="f_blue">1</font>/1</span><span class="prev">上一页</span><span
                                 class="next"><a href="#">下一页</a></span></div>
                     </div>
                 </div>
                 <ul class="pllist">
-                    <li>
-                        <div class="lyimg"><a href="#"><img src="../images/grzx/lyimg.jpg"/></a></div>
-                        <div class="lyinfo">
-                            <div class="lyname"><span class="myname"><a href="#">huo_zhenying</a></span></div>
-                            <div class="gxqm">为什么不叫汪峰来更火 募捐的人更多为什么不叫汪峰来更火 募捐的人更多为什么不叫汪峰来更火 募捐的人更多为什么不叫汪峰来更火
-                                募捐的人更多为什么不叫汪峰来更火 募捐的人更多为什么不叫汪峰来更火 募捐的人更多为什么不叫汪峰来更火 募捐的人更多为什么不叫汪峰来更火 募捐的人更多为什么不叫汪峰来更火
-                                募捐的人更多为什么不叫汪峰来更火 募捐的人更多为什么不叫汪峰来更火 募捐的人更多为什么不叫汪峰来更火 募捐的人更多为什么不叫汪峰来更火 募捐的人更多为什么不叫汪峰来更火
-                                募捐的人更多为什么不叫汪峰来更火 募捐的人更多
-</div>
-                            <div class="reque">36分钟前 来自iPad客户端 <span class="zhuanfa"><a href="#">转发</a><a
-                                    href="#">回复</a></span></div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="lyimg"><a href="#"><img src="../images/grzx/lyimg.jpg"/></a></div>
-                        <div class="lyinfo">
-                            <div class="lyname"><span class="myname"><a href="#">huo_zhenying</a></span></div>
-                            <div class="gxqm">为什么不叫汪峰来更火 募捐的人更多为什么不叫汪峰来更火 募捐的人更多为什么不叫汪峰来更火 募捐的人更多为什么不叫汪峰来更火
-                                募捐的人更多为什么不叫汪峰来更火 募捐的人更多为什么不叫汪峰来更火 募捐的人更多为什么不叫汪峰来更火 募捐的人更多为什么不叫汪峰来更火 募捐的人更多为什么不叫汪峰来更火
-                                募捐的人更多为什么不叫汪峰来更火 募捐的人更多为什么不叫汪峰来更火 募捐的人更多为什么不叫汪峰来更火 募捐的人更多为什么不叫汪峰来更火 募捐的人更多为什么不叫汪峰来更火
-                                募捐的人更多为什么不叫汪峰来更火 募捐的人更多
-</div>
-                            <div class="reque">36分钟前 来自iPad客户端 <span class="zhuanfa"><a href="#">转发</a><a
-                                    href="#">回复</a></span></div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="lyimg"><a href="#"><img src="../images/grzx/lyimg.jpg"/></a></div>
-                        <div class="lyinfo">
-                            <div class="lyname"><span class="myname"><a href="#">huo_zhenying</a></span></div>
-                            <div class="gxqm">为什么不叫汪峰来更火 募捐的人更多为什么不叫汪峰来更火 募捐的人更多为什么不叫汪峰来更火 募捐的人更多为什么不叫汪峰来更火
-                                募捐的人更多为什么不叫汪峰来更火 募捐的人更多为什么不叫汪峰来更火 募捐的人更多为什么不叫汪峰来更火 募捐的人更多为什么不叫汪峰来更火 募捐的人更多为什么不叫汪峰来更火
-                                募捐的人更多为什么不叫汪峰来更火 募捐的人更多为什么不叫汪峰来更火 募捐的人更多为什么不叫汪峰来更火 募捐的人更多为什么不叫汪峰来更火 募捐的人更多为什么不叫汪峰来更火
-                                募捐的人更多为什么不叫汪峰来更火 募捐的人更多
-</div>
-                            <div class="reque">36分钟前 来自iPad客户端 <span class="zhuanfa"><a href="#">转发</a><a
-                                    href="#">回复</a></span></div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="lyimg"><a href="#"><img src="../images/grzx/lyimg.jpg"/></a></div>
-                        <div class="lyinfo">
-                            <div class="lyname"><span class="myname"><a href="#">huo_zhenying</a></span></div>
-                            <div class="gxqm">为什么不叫汪峰来更火 募捐的人更多为什么不叫汪峰来更火 募捐的人更多为什么不叫汪峰来更火 募捐的人更多为什么不叫汪峰来更火
-                                募捐的人更多为什么不叫汪峰来更火 募捐的人更多为什么不叫汪峰来更火 募捐的人更多为什么不叫汪峰来更火 募捐的人更多为什么不叫汪峰来更火 募捐的人更多为什么不叫汪峰来更火
-                                募捐的人更多为什么不叫汪峰来更火 募捐的人更多为什么不叫汪峰来更火 募捐的人更多为什么不叫汪峰来更火 募捐的人更多为什么不叫汪峰来更火 募捐的人更多为什么不叫汪峰来更火
-                                募捐的人更多为什么不叫汪峰来更火 募捐的人更多
-</div>
-                            <div class="reque">36分钟前 来自iPad客户端 <span class="zhuanfa"><a href="#">转发</a><a
-                                    href="#">回复</a></span></div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="lyimg"><a href="#"><img src="../images/grzx/lyimg.jpg"/></a></div>
-                        <div class="lyinfo">
-                            <div class="lyname"><span class="myname"><a href="#">huo_zhenying</a></span></div>
-                            <div class="gxqm">为什么不叫汪峰来更火 募捐的人更多为什么不叫汪峰来更火 募捐的人更多为什么不叫汪峰来更火 募捐的人更多为什么不叫汪峰来更火
-                                募捐的人更多为什么不叫汪峰来更火 募捐的人更多为什么不叫汪峰来更火 募捐的人更多为什么不叫汪峰来更火 募捐的人更多为什么不叫汪峰来更火 募捐的人更多为什么不叫汪峰来更火
-                                募捐的人更多为什么不叫汪峰来更火 募捐的人更多为什么不叫汪峰来更火 募捐的人更多为什么不叫汪峰来更火 募捐的人更多为什么不叫汪峰来更火 募捐的人更多为什么不叫汪峰来更火
-                                募捐的人更多为什么不叫汪峰来更火 募捐的人更多
-</div>
-                            <div class="reque">36分钟前 来自iPad客户端 <span class="zhuanfa"><a href="#">转发</a><a
-                                    href="#">回复</a></span></div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="lyimg"><a href="#"><img src="../images/grzx/lyimg.jpg"/></a></div>
-                        <div class="lyinfo">
-                            <div class="lyname"><span class="myname"><a href="#">huo_zhenying</a></span></div>
-                            <div class="gxqm">为什么不叫汪峰来更火 募捐的人更多为什么不叫汪峰来更火 募捐的人更多为什么不叫汪峰来更火 募捐的人更多为什么不叫汪峰来更火
-                                募捐的人更多为什么不叫汪峰来更火 募捐的人更多为什么不叫汪峰来更火 募捐的人更多为什么不叫汪峰来更火 募捐的人更多为什么不叫汪峰来更火 募捐的人更多为什么不叫汪峰来更火
-                                募捐的人更多为什么不叫汪峰来更火 募捐的人更多为什么不叫汪峰来更火 募捐的人更多为什么不叫汪峰来更火 募捐的人更多为什么不叫汪峰来更火 募捐的人更多为什么不叫汪峰来更火
-                                募捐的人更多为什么不叫汪峰来更火 募捐的人更多
-</div>
-                            <div class="reque">36分钟前 来自iPad客户端 <span class="zhuanfa"><a href="#">转发</a><a
-                                    href="#">回复</a></span></div>
-                        </div>
-                    </li>
+HTML;
+$html_C = <<<HTML
+HTML;
+$html_D = <<<HTML
                 </ul>
                 <div class="page"><span class="prev">上一页</span><span class="num"><a href="#" class="on">1</a></span><span class="next"><a href="#">下一页</a></span><em>1/1</em>转到
                     <input name="textfield" type="text" value="1" class="inputpage"/>页
@@ -307,13 +239,12 @@ $course_content</p>
 </html>
 HTML;
 echo $html_A;
-for($i=0;$i<$count_relative_course;$i++)
-{
-    $relative_course_id=$result_relative_course[$i]["id"];
-    $relative_course_name=$result_relative_course[$i]["name"];
-    $relative_course_play_count=$result_relative_course[$i]["play_count"];
-    $relative_course_approve=$result_relative_course[$i]["approve"];
-    $html_relative_course=<<<HTML
+for ($i = 0; $i < $count_relative_course; $i++) {
+    $relative_course_id = $result_relative_course[$i]["id"];
+    $relative_course_name = $result_relative_course[$i]["name"];
+    $relative_course_play_count = $result_relative_course[$i]["play_count"];
+    $relative_course_approve = $result_relative_course[$i]["approve"];
+    $html_relative_course = <<<HTML
     <li class="item"><a class="item_link" href="course.php?course_id=$relative_course_id" title="$relative_course_name"> 
         <span class="album_pic"> 
             <img width="117px" height="65px" src="../course/$relative_course_id/$relative_course_id.jpg" alt="$relative_course_name"> </span>
@@ -327,5 +258,30 @@ HTML;
     echo $html_relative_course;
 }
 echo $html_B;
+echo $html_C;
+for ($j = 0; $j < $count_comment; $j++) {
+    $comment_user_id=$result_comment[$j]['user_id'];
+    $comment_content=$result_comment[$j]['content'];
+    $comment_time=$result_comment[$j]['time'];
+    $comment_approve=$result_comment[$j]['approve'];
+    $comment_disapprove=$result_comment[$j]['disapprove'];
+
+    $result_comment_user=$my_db->database_get("select name from user where id=$comment_user_id");
+    $comment_user_name=$result_comment_user[0]['name'];
+    $html_comment = <<<HTML
+    <li>
+                        <div class="lyimg"><a href="#"><img src="../user/user_image/$comment_user_name.jpg"/></a></div>
+                        <div class="lyinfo">
+                            <div class="lyname"><span class="myname"><a href="#">$comment_user_name</a></span></div>
+                            <div class="gxqm">$comment_content
+</div>
+                            <div class="reque">发布于 $comment_time<span class="zhuanfa"><a href="#">$comment_approve 个赞</a><a
+                                    href="#">$comment_disapprove 个踩</a></span></div>
+                        </div>
+                    </li>
+HTML;
+    echo $html_comment;
+}
+echo $html_D;
 ?>
 
