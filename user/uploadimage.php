@@ -22,7 +22,7 @@ if (move_uploaded_file($_FILES['photo']['tmp_name'], $server_name)) {
     //echo "<BR>"."Upload Success!";
     echo "<script type='text/javascript'>alert('上传头像成功');location='../user/user.php';</script>";
 } else {
-    //echo "<BR>"."Upload Failed!".$_FILES['photo']['error'];
+    echo "<BR>"."Upload Failed!".$_FILES['photo']['error'];
     echo "<script type='text/javascript'>alert('上传头像失败');location='../user/user.php';</script>";
 }
 ?>

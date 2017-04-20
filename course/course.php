@@ -23,6 +23,18 @@ $course_type = $result[0]['type'];
 $result_relative_course = $my_db->database_get("select * from course where type = '$course_type'");
 $count_relative_course = count($result_relative_course);
 
+$table = 'history';//历史记录
+$t = time();
+$time = date("Y-m-d H:i:s", $t);
+$result_history = $my_db->database_get("select * from history where course_id='$course_id'and user_id='$user_id'");
+$count_history = count($result_history);
+if ($count_history == 1) {
+    $my_db->database_do("update history set time=$time where course_id='$course_id'and user_id='$user_id'");
+} else {
+    $values = array('course_id' => $course_id, 'user_id' => $user_id, 'time' => $time);
+    $my_db->insert_to_db($table, $values);
+}
+
 @$result_comment = $my_db->database_get("select * from comment where course_id='$course_id'");
 $count_comment = count($result_comment);
 
@@ -260,14 +272,14 @@ HTML;
 echo $html_B;
 echo $html_C;
 for ($j = 0; $j < $count_comment; $j++) {
-    $comment_user_id=$result_comment[$j]['user_id'];
-    $comment_content=$result_comment[$j]['content'];
-    $comment_time=$result_comment[$j]['time'];
-    $comment_approve=$result_comment[$j]['approve'];
-    $comment_disapprove=$result_comment[$j]['disapprove'];
+    $comment_user_id = $result_comment[$j]['user_id'];
+    $comment_content = $result_comment[$j]['content'];
+    $comment_time = $result_comment[$j]['time'];
+    $comment_approve = $result_comment[$j]['approve'];
+    $comment_disapprove = $result_comment[$j]['disapprove'];
 
-    $result_comment_user=$my_db->database_get("select name from user where id=$comment_user_id");
-    $comment_user_name=$result_comment_user[0]['name'];
+    $result_comment_user = $my_db->database_get("select name from user where id=$comment_user_id");
+    $comment_user_name = $result_comment_user[0]['name'];
     $html_comment = <<<HTML
     <li>
                         <div class="lyimg"><a href="#"><img src="../user/user_image/$comment_user_name.jpg"/></a></div>
